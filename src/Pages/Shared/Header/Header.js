@@ -5,7 +5,7 @@ import logo from '../../../assets/logo/logo.jpg'
 const Header = () => {
     const [open, setOpen] = useState(false)
     return (
-        <nav className="bg-gray-900 py md:w-full px-8">
+        <nav className="bg-gray-900 px-8">
             <div className='flex justify-between items-center mx-4'>
                 <div>
                     <Link to='/' className='block ml-0'>
