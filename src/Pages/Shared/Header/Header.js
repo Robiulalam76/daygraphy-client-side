@@ -24,7 +24,8 @@ const Header = () => {
                     }
                 </div>
             </div>
-            <div className={`bg-gray-900 flex text-white z-50 flex-col items-start justify-start mt-none md:flex-row md:items-center h-full md:h-fit md:w-full md:flex md:justify-end absolute md:static duration-500 ease-in  ${open ? 'left-[0px] pl-5 pr-16 pt-3' : '-left-[300px] md:left-0'}`}>
+            <div className={`bg-gray-900 flex text-white z-50 flex-col items-start justify-start mt-none md:flex-row md:items-center h-full md:h-fit md:w-full md:flex md:justify-end absolute md:static duration-500 ease-in  
+            ${open ? 'left-[0px] pl-5 pr-16 pt-3' : '-left-[300px] md:left-0'}`}>
                 <Link to='/' className='text-blue-600 font-bold text-2xl md:grow' >
                     <img className='w-20 hidden md:block' src={logo} alt="brand logo" />
                 </Link>
@@ -40,6 +41,9 @@ const Header = () => {
                 <NavLink to='/services'
                     onClick={() => setOpen(false)} className={({ isActive }) => isActive ?
                         'text-orange-600 mt-3 md:mt-0 mr-6' : 'mr-6 mt-3 md:mt-0'} >SERVICES</NavLink>
+                <NavLink to='/galary'
+                    onClick={() => setOpen(false)} className={({ isActive }) => isActive ?
+                        'text-orange-600 mt-3 md:mt-0 mr-6' : 'mr-6 mt-3 md:mt-0'} >GALAY</NavLink>
                 <NavLink to='/about'
                     onClick={() => setOpen(false)} className={({ isActive }) => isActive ?
                         'text-orange-600 mt-3 md:mt-0' : ' mt-3 md:mt-0'} >ABOUT US</NavLink>
