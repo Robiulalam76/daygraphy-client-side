@@ -5,7 +5,7 @@ import logo from '../../../assets/logo/logo.jpg'
 const Header = () => {
     const [open, setOpen] = useState(false)
     return (
-        <nav className="bg-gray-900 py md:w-full">
+        <nav className="bg-gray-900 py md:w-full px-8">
             <div className='flex justify-between items-center mx-4'>
                 <div>
                     <Link to='/' className='block ml-0'>
@@ -24,7 +24,7 @@ const Header = () => {
                     }
                 </div>
             </div>
-            <div className={`bg-gray-800 flex text-white z-50 flex-col items-start justify-start mt-none md:flex-row md:items-center h-full md:h-fit md:w-full md:flex md:justify-end md:pr-12 absolute md:static duration-500 ease-in  ${open ? 'left-[0px] pl-5 pr-16 pt-3' : '-left-[300px] md:left-0'}`}>
+            <div className={`bg-gray-900 flex text-white z-50 flex-col items-start justify-start mt-none md:flex-row md:items-center h-full md:h-fit md:w-full md:flex md:justify-end absolute md:static duration-500 ease-in  ${open ? 'left-[0px] pl-5 pr-16 pt-3' : '-left-[300px] md:left-0'}`}>
                 <Link to='/' className='text-blue-600 font-bold text-2xl md:grow' >
                     <img className='w-20 hidden md:block' src={logo} alt="brand logo" />
                 </Link>
