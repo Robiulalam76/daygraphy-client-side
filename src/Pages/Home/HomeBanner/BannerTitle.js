@@ -10,7 +10,7 @@ const BannerTitle = () => {
                 </h1>
                 <i className='text-2xl font-bold pb-2'>PROFESSIONAL PHOTOGRAPHER</i>
                 <p className='mb-5 text-white'>
-                    This is H Al Hadi. I'm Professional PhotoGrapher.
+                    This is H Al Hadi. I'm Professional PhotoGrapher. I have been working on professional photography for almost five years.  So far I have done very good work for many companies.  And still working with many companies.  I always try to make the best photography possible by my efforts.  Inshallah I will be able to give more beautiful gifts in the future.
                 </p>
             </div>
         </div>
