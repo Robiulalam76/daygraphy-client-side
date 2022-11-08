@@ -54,6 +54,14 @@ const Header = () => {
 
                 {
                     user?.uid ? <>
+                        <NavLink to='/my-review'
+                            onClick={() => setOpen(false)} className={({ isActive }) => isActive ?
+                                'text-orange-600 mt-3 md:mt-0 mr-6' : 'mr-6 mt-3 md:mt-0'} >MY REVIEW</NavLink>
+
+                        <NavLink to='/add-service'
+                            onClick={() => setOpen(false)} className={({ isActive }) => isActive ?
+                                'text-orange-600 mt-3 md:mt-0 mr-6' : 'mr-6 mt-3 md:mt-0'} >ADD SERVICE</NavLink>
+
                         <NavLink
                             onClick={() => setOpen(false)} className={({ isActive }) => isActive ?
                                 'mt-3 md:mt-0 mr-6' : 'mr-6 mt-3 md:mt-0'} >
