@@ -1,6 +1,6 @@
 import React from 'react';
-import About from '../About/About';
-import HomeSlider from './HomeSlider';
+import About from '../../About/About';
+import HomeSlider from '../HomeBanner/HomeSlider';
 
 const Home = () => {
     return (
