@@ -60,7 +60,7 @@ const ServiceDetails = () => {
 
                 {/* review list */}
                 <div className='md:col-span-3'>
-                    <ReviewForm></ReviewForm>
+                    <ReviewForm service={service}></ReviewForm>
                 </div>
                 <div className='md:col-span-2 w-full '>
                     <AllReview></AllReview>

@@ -1,6 +1,39 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../../Context/AuthProvider/AuthProvider';
 
-const ReviewForm = () => {
+const ReviewForm = ({ service }) => {
+    const { user } = useContext(AuthContext)
+    const { _id } = service;
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+        const message = event.target.message.value
+        // console.log(message);
+
+        const review = {
+            serviceId: _id,
+            name: user?.displayName,
+            img: user?.photoURL,
+            email: user?.email,
+            message: message
+        }
+        // console.log(review);
+
+        fetch('http://localhost:5000/reviews', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(review)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.acknowledged) {
+                    event.target.reset()
+                }
+            })
+    }
     return (
         <div className="flex flex-col p-8 shadow-sm lg:p-12 bg-white">
             <div className="flex flex-col items-center w-full">
@@ -35,10 +68,10 @@ const ReviewForm = () => {
                         </button>
                     </div>
                 </div>
-                <div className="flex flex-col w-full">
-                    <textarea rows="3" placeholder="Message..." className="p-4 rounded-md resize-none dark:text-gray-100 dark:bg-gray-900" spellcheck="false"></textarea>
-                    <button type="button" className="py-4 my-8 font-semibold rounded-md dark:text-gray-900 dark:bg-violet-400">SEND REVIEW</button>
-                </div>
+                <form onSubmit={handleSubmit} className="flex flex-col w-full">
+                    <textarea name='message' rows="3" placeholder="Message..." className="p-4 rounded-md resize-none dark:text-gray-100 dark:bg-gray-900" spellcheck="false"></textarea>
+                    <button type="submit" className="py-4 my-8 font-semibold rounded-md dark:text-gray-900 dark:bg-violet-400">SEND REVIEW</button>
+                </form>
             </div>
         </div>
     );
