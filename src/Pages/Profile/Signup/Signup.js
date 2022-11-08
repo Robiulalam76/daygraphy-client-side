@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import { GoogleAuthProvider } from "firebase/auth";
+import Swal from 'sweetalert2'
 
 const Signup = () => {
     const { user, signupEmailAndPassword, updateUserProfile, signupWithGoogle,
@@ -23,13 +24,13 @@ const Signup = () => {
                 const user = result.user
                 updateProfile(name, photoURL)
                 navigate('/login')
-                console.log(user);
+                // console.log(user);
             })
             .catch(error => console.error(error))
     }
 
     const updateProfile = (name, photoURL) => {
-        const profile = { name, photoURL }
+        const profile = { displayName: name, photoURL: photoURL }
         updateUserProfile(profile)
     }
 
@@ -38,7 +39,12 @@ const Signup = () => {
             .then(result => {
                 const user = result.user
                 navigate('/')
-                console.log(user);
+                Swal.fire(
+                    'Welcome!',
+                    'Your Account Create Successfully',
+                    'success'
+                )
+                // console.log(user);
             })
             .catch(error => console.error(error))
     }
@@ -57,7 +63,7 @@ const Signup = () => {
                             type="text"
                             className="block bg-white border border-grey-light w-full p-3 rounded mb-4"
                             name="photoURL"
-                            placeholder="Email" required />
+                            placeholder="Your Photo URL" required />
                         <input
                             type="email"
                             className="block bg-white border border-grey-light w-full p-3 rounded mb-4"

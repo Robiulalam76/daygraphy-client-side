@@ -1,83 +1,52 @@
 import React from 'react';
+import img1 from '../../assets/banner/banner (1).jpeg';
+import img2 from '../../assets/banner/banner (2).jpeg';
+import img3 from '../../assets/banner/banner (3).jpeg';
+import './banner.css'
 
 const HomeSlider = () => {
     return (
-        <div id="carouselExampleCaptions" class="carousel slide relative" data-bs-ride="carousel">
-            <div class="carousel-indicators absolute right-0 bottom-0 left-0 flex justify-center p-0 mb-4">
-                <button
-                    type="button"
-                    data-bs-target="#carouselExampleCaptions"
-                    data-bs-slide-to="0"
-                    class="active"
-                    aria-current="true"
-                    aria-label="Slide 1"
-                ></button>
-                <button
-                    type="button"
-                    data-bs-target="#carouselExampleCaptions"
-                    data-bs-slide-to="1"
-                    aria-label="Slide 2"
-                ></button>
-                <button
-                    type="button"
-                    data-bs-target="#carouselExampleCaptions"
-                    data-bs-slide-to="2"
-                    aria-label="Slide 3"
-                ></button>
-            </div>
-            <div class="carousel-inner relative w-full overflow-hidden">
-                <div class="carousel-item active relative float-left w-full">
-                    <img
-                        src="https://mdbootstrap.com/img/Photos/Slides/img%20(15).jpg"
-                        class="block w-full"
-                        alt="..."
-                    />
-                    <div class="carousel-caption hidden md:block absolute text-center">
-                        <h5 class="text-xl">First slide label</h5>
-                        <p>Some representative placeholder content for the first slide.</p>
-                    </div>
+        <div className="carousel h-[450px] rounded-lg w-full">
+            <div id="slide1" className="carousel-item relative w-full rounded-lg">
+                <div className='carousel-img h-96'>
+                    <img src={img1} className="w-full rounded-lg" alt='' />
                 </div>
-                <div class="carousel-item relative float-left w-full">
-                    <img
-                        src="https://mdbootstrap.com/img/Photos/Slides/img%20(22).jpg"
-                        class="block w-full"
-                        alt="..."
-                    />
-                    <div class="carousel-caption hidden md:block absolute text-center">
-                        <h5 class="text-xl">Second slide label</h5>
-                        <p>Some representative placeholder content for the second slide.</p>
-                    </div>
+                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                    <a href="#slide4" className="btn btn-circle">❮</a>
+                    <a href="#slide2" className="btn btn-circle">❯</a>
                 </div>
-                <div class="carousel-item relative float-left w-full">
-                    <img
-                        src="https://mdbootstrap.com/img/Photos/Slides/img%20(23).jpg"
-                        class="block w-full"
-                        alt="..."
-                    />
-                    <div class="carousel-caption hidden md:block absolute text-center">
-                        <h5 class="text-xl">Third slide label</h5>
-                        <p>Some representative placeholder content for the third slide.</p>
-                    </div>
+                <div className='absolute top-32 text-center w-full right-auto md:right-44'>
+                    <h1 className='font-bold text-white text-3xl'>Welcome To My Website</h1>
                 </div>
             </div>
-            <button
-                class="carousel-control-prev absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline left-0"
-                type="button"
-                data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="prev"
-            >
-                <span class="carousel-control-prev-icon inline-block bg-no-repeat" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button
-                class="carousel-control-next absolute top-0 bottom-0 flex items-center justify-center p-0 text-center border-0 hover:outline-none hover:no-underline focus:outline-none focus:no-underline right-0"
-                type="button"
-                data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="next"
-            >
-                <span class="carousel-control-next-icon inline-block bg-no-repeat" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+            <div id="slide2" className="carousel-item relative w-full">
+                <img src={img2} className="w-full" alt='' />
+                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                    <a href="#slide1" className="btn btn-circle">❮</a>
+                    <a href="#slide3" className="btn btn-circle">❯</a>
+                </div>
+            </div>
+            <div id="slide3" className="carousel-item relative w-full">
+                <img src={img3} className="w-full" alt='' />
+                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                    <a href="#slide2" className="btn btn-circle">❮</a>
+                    <a href="#slide4" className="btn btn-circle">❯</a>
+                </div>
+            </div>
+            <div id="slide4" className="carousel-item relative w-full">
+                <img src="https://placeimg.com/800/200/arch" className="w-full" />
+                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                    <a href="#slide3" className="btn btn-circle">❮</a>
+                    <a href="#slide5" className="btn btn-circle">❯</a>
+                </div>
+            </div>
+            <div id="slide5" className="carousel-item relative w-full">
+                <img src="https://pas-wordpress-media.s3.amazonaws.com/content/uploads/2014/07/08132212/bigstock-Travel-Photographer-Taking-A-P-302170048-min-653x300.jpg" className="w-full" />
+                <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+                    <a href="#slide4" className="btn btn-circle">❮</a>
+                    <a href="#slide1" className="btn btn-circle">❯</a>
+                </div>
+            </div>
         </div>
     );
 };

@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AuthProvider from './Context/AuthProvider/AuthProvider';
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

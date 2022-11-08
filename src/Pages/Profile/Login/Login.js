@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
+import { GoogleAuthProvider } from "firebase/auth";
+import Swal from 'sweetalert2'
 
 const Login = () => {
-    const { user, signupEmailAndPassword, signupWithGoogle,
+    const { user, loginWithEmailPassword, signupWithGoogle,
         signupWithFacebook, signupWithGithub } = useContext(AuthContext)
+    const googleProvider = new GoogleAuthProvider();
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || "/";
@@ -13,10 +16,34 @@ const Login = () => {
         event.preventDefault();
         const email = event.target.email.value;
         const password = event.target.password.value;
+
+        loginWithEmailPassword(email, password)
+            .then(result => {
+                const user = result.user
+                navigate('/')
+                Swal.fire(
+                    'Welcome!',
+                    'Your Account Login Successfully',
+                    'success'
+                )
+                // console.log(user);
+            })
+            .catch(error => console.error(error))
     }
 
     const handleSignupWithGoogle = () => {
-
+        signupWithGoogle(googleProvider)
+            .then(result => {
+                const user = result.user
+                navigate('/')
+                Swal.fire(
+                    'Welcome!',
+                    'Your Account Login Successfully',
+                    'success'
+                )
+                // console.log(user);
+            })
+            .catch(error => console.error(error))
     }
     return (
         <div>

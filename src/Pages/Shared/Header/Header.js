@@ -1,11 +1,18 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../../../assets/logo/logo.jpg'
+import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 
 const Header = () => {
+    const { user, logout } = useContext(AuthContext)
     const [open, setOpen] = useState(false)
+    console.log(user);
+
+    const handleLogout = () => {
+        logout()
+    }
     return (
-        <nav className="bg-gray-900 px-8">
+        <nav className="bg-gray-900 px-8 mb-6">
             <div className='flex justify-between items-center mx-4'>
                 <div>
                     <Link to='/' className='block ml-0'>
@@ -43,19 +50,22 @@ const Header = () => {
                         'text-orange-600 mt-3 md:mt-0 mr-6' : 'mr-6 mt-3 md:mt-0'} >SERVICES</NavLink>
                 <NavLink to='/galary'
                     onClick={() => setOpen(false)} className={({ isActive }) => isActive ?
-                        'text-orange-600 mt-3 md:mt-0 mr-6' : 'mr-6 mt-3 md:mt-0'} >GALAY</NavLink>
-                <NavLink to='/about'
-                    onClick={() => setOpen(false)} className={({ isActive }) => isActive ?
-                        'text-orange-600 mt-3 md:mt-0' : ' mt-3 md:mt-0'} >ABOUT US</NavLink>
+                        'text-orange-600 mt-3 md:mt-0 mr-6' : 'mr-6 mt-3 md:mt-0'} >GALARY</NavLink>
 
-                {/* {
-                    user?.uid ?
-                        <Link className='order-first md:order-none' onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-                            <img onClick={() => setProfileView(!profileView)} className='w-10 rounded-full' src={user?.photoURL} alt="" />
+                {
+                    user?.uid ? <>
+                        <NavLink
+                            onClick={() => setOpen(false)} className={({ isActive }) => isActive ?
+                                'mt-3 md:mt-0 mr-6' : 'mr-6 mt-3 md:mt-0'} >
+                            <button onClick={handleLogout} className='bg-blue-500 px-2 py-1 text-white rounded-md'>LOGOUT</button>
+                        </NavLink>
+                        <Link className='order-first md:order-none'>
+                            <img className='w-10 rounded-full' src={user?.photoURL} alt="" />
                         </Link>
+                    </>
                         :
                         <NavLink onClick={() => setOpen(false)} className={({ isActive }) => isActive ? 'active mt-3 md:mt-0' : 'mt-3 md:mt-0'} to='/login'>LOGIN</NavLink>
-                } */}
+                }
             </div>
         </nav>
     );
