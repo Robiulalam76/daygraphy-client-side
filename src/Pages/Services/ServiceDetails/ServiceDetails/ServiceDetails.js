@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
+import ReviewForm from '../ReviewForm/ReviewForm';
+import ReviewStatitics from '../ReviewStatitics/ReviewStatitics';
+import AllReview from '../AllReview/AllReview';
 
 const ServiceDetails = () => {
     const service = useLoaderData();
@@ -11,16 +14,16 @@ const ServiceDetails = () => {
             <PhotoProvider>
                 <div className="foo h-96">
                     <PhotoView src={img}>
-                        <img class="h-full w-full" src={img} alt="" />
+                        <img className="h-full w-full" src={img} alt="" />
                     </PhotoView>
                 </div>
             </PhotoProvider>
 
-            <div className='flex justify-between'>
-                <div>
-                    <div class="p-6 bg-white">
+            <div className='grid grid-cols-1 lg:grid-cols-5'>
+                <div className='md:col-span-3'>
+                    <div className="p-6 bg-white">
                         <div className='flex justify-between items-center mb-2'>
-                            <h5 class="text-gray-900 text-xl md:text-3xl font-medium">{title}</h5>
+                            <h5 className="text-gray-900 text-xl md:text-3xl font-medium">{title}</h5>
                             <h1 className='text-blue-900 text-2xl md:text-4xl font-bold'>${price}</h1>
                         </div>
                         <div className='flex items-center mb-3'>
@@ -30,10 +33,13 @@ const ServiceDetails = () => {
                                 <Link to='/about' className='text-gray-800 block'><small>H Al Hadi</small></Link>
                             </div>
                         </div>
-                        <p class="text-gray-700 text-base mb-4">
+                        <p className="text-gray-700 text-base mb-4">
                             {description}
                         </p>
-                        <div className=''>
+                        <div className='flex justify-between items-center'>
+                            <Link to={`/services/order-request/${_id}`}>
+                                <button type="button" class=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">ORDER REQUEST</button>
+                            </Link>
                             <div class="flex items-center text-black">
                                 <svg aria-hidden="true" class="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                     <title>Rating star</title>
@@ -47,18 +53,19 @@ const ServiceDetails = () => {
                     </div>
                 </div>
 
-                <div>
-                    <form>
-                        <input type="text" name='' placeholder='' required />
-                        <input type="text" name='' placeholder='' required />
-                        <input type="text" name='' placeholder='' required />
-                        <input type="text" name='' placeholder='' required />
-                        <input type="text" name='' placeholder='' required />
-                        <input type="text" name='' placeholder='' required />
-                        <input type="text" name='' placeholder='' required />
-                        <input type="text" name='' placeholder='' required />
-                    </form>
+                <div className='md:col-span-2 h-full z-50 order-last md:order-none'>
+                    <ReviewStatitics></ReviewStatitics>
                 </div>
+
+
+                {/* review list */}
+                <div className='md:col-span-3'>
+                    <ReviewForm></ReviewForm>
+                </div>
+                <div className='md:col-span-2 w-full '>
+                    <AllReview></AllReview>
+                </div>
+
             </div>
 
         </div>
