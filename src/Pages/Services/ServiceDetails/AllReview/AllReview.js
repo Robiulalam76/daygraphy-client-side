@@ -1,29 +1,35 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import reply from '../../../../assets/icons/response (1).png'
+import edit from '../../../../assets/icons/edit.png'
+import trash from '../../../../assets/icons/trash.png'
 
-const AllReview = ({ review }) => {
-    const { _id, serviceId, name, img, email, message } = review
+const AllReview = ({ review, handleDelete }) => {
+    const { _id, serviceId, name, img, email, message } = review;
+
+
     return (
-        <div className="w-full">
+        <div className="w-full bg-white">
             <div className="bg-white p-6 shadow">
-                <div className="flex items-center border-b border-gray-200 pb-6">
+                <div className="flex items-center border-b border-gray-200">
                     <img src={img} className="w-12 h-12 rounded-full" alt='' />
                     <div className="flex items-start justify-between w-full">
                         <div className="pl-3 w-full">
                             <p className="text-xl font-medium leading-5 text-gray-800">{name}</p>
                             <p className="text-sm leading-normal pt-2 text-gray-500">{email}</p>
                         </div>
-                        <svg width={28} height={28} viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10.5001 4.66667H17.5001C18.1189 4.66667 18.7124 4.9125 19.15 5.35009C19.5876 5.78767 19.8334 6.38117 19.8334 7V23.3333L14.0001 19.8333L8.16675 23.3333V7C8.16675 6.38117 8.41258 5.78767 8.85017 5.35009C9.28775 4.9125 9.88124 4.66667 10.5001 4.66667Z" stroke="#2C3E50" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
+                        <h1>tarikh</h1>
                     </div>
                 </div>
                 <div className="px-2">
                     <p className="text-sm leading-5 py-4 text-gray-600">
                         {message}
                     </p>
-                    <div className="flex">
-                        <div className="py-2 px-4 text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">#dogecoin</div>
-                        <div className="py-2 px-4 ml-3 text-xs leading-3 text-indigo-700 rounded-full bg-indigo-100">#crypto</div>
+                    <hr />
+                    <div className="flex justify-end items-center mt-3">
+                        <Link className='flex-grow text-gray-600 hover:text-blue-600'><img className='w-6 inline' src={reply} alt="" /> Reply</Link>
+                        <button ><img className='w-6 mr-6' src={edit} alt="" /></button>
+                        <button onClick={() => handleDelete(_id)}><img className='w-6' src={trash} alt="" /></button>
                     </div>
                 </div>
             </div>

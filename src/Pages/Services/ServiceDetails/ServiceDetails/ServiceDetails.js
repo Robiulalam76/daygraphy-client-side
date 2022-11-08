@@ -4,6 +4,7 @@ import { PhotoProvider, PhotoView } from 'react-photo-view';
 import ReviewStatitics from '../ReviewStatitics/ReviewStatitics';
 import AllReview from '../AllReview/AllReview';
 import { AuthContext } from '../../../../Context/AuthProvider/AuthProvider';
+import Swal from 'sweetalert2'
 
 const ServiceDetails = () => {
     const { user, logout } = useContext(AuthContext)
@@ -16,9 +17,8 @@ const ServiceDetails = () => {
 
 
     const handleReview = (event) => {
-        event.preventDefault()
+        // event.preventDefault()
         const message = event.target.message.value
-        // console.log(message);
 
         const review = {
             serviceId: _id,
@@ -53,11 +53,51 @@ const ServiceDetails = () => {
                 return res.json()
             })
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 setReviews(data)
             })
 
     }, [_id])
+
+
+    const handleDelete = (id) => {
+
+        // console.log(id);
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger mx-3'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, Delete',
+            cancelButtonText: 'No, Cancel',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                fetch(`http://localhost:5000/reviews/${id}`, {
+                    method: 'DELETE',
+                    headers: {
+                        authorization: `Bearer ${localStorage.getItem('user-token')}`
+                    }
+                })
+
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            const remaining = reviews.filter(review => review._id !== id)
+                            setReviews(remaining)
+                        }
+                    })
+            }
+        })
+    }
 
 
     return (
@@ -105,7 +145,7 @@ const ServiceDetails = () => {
                     </div>
                 </div>
 
-                <div className='md:col-span-2 h-full z-50 order-last md:order-none'>
+                <div className='md:col-span-2 h-full z-50 order-last lg:order-none'>
                     <ReviewStatitics></ReviewStatitics>
                 </div>
 
@@ -152,12 +192,19 @@ const ServiceDetails = () => {
                         </div>
                     </div>
                 </div>
-                <div className='md:col-span-2 w-full  overflow-auto h-[500px]'>
+                <div className='md:col-span-2 w-full  md:overflow-auto h-[500px]'>
                     {
-                        reviews.map(review => <AllReview
-                            key={review._id}
-                            review={review}
-                        ></AllReview>)
+                        reviews.length === 0 ? <h1 className='text-3xl font-bold text-white text-center mt-12'>No Reviews</h1>
+                            :
+                            <>
+                                {
+                                    reviews.map(review => <AllReview
+                                        key={review._id}
+                                        review={review}
+                                        handleDelete={handleDelete}
+                                    ></AllReview>)
+                                }
+                            </>
                     }
 
                 </div>
