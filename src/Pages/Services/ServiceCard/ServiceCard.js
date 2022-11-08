@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { PhotoProvider, PhotoView } from 'react-photo-view';
 
 const ServiceCard = ({ service }) => {
     const { _id, price, title, description, img, photographer } = service;
@@ -8,7 +9,15 @@ const ServiceCard = ({ service }) => {
             <div class="flex justify-center">
                 <div class="rounded-lg shadow-lg bg-white max-w-sm">
                     <a href="#!">
-                        <img class="rounded-t-lg h-44 w-full" src={img} alt="" />
+
+                        {/* click to img show */}
+                        <PhotoProvider>
+                            <div className="foo">
+                                <PhotoView src={img}>
+                                    <img class="rounded-t-lg h-44 w-full" src={img} alt="" />
+                                </PhotoView>
+                            </div>
+                        </PhotoProvider>
                     </a>
                     <div class="p-6">
                         <div className='flex justify-between items-center mb-2'>
@@ -37,3 +46,4 @@ const ServiceCard = ({ service }) => {
 };
 
 export default ServiceCard;
+
