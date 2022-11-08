@@ -1,12 +1,13 @@
 import React from 'react';
 
-const ServiceCard = () => {
+const ServiceCard = ({ service }) => {
+    const { _id, price, title, description, img } = service;
     return (
         <div>
             <div class="flex justify-center">
                 <div class="rounded-lg shadow-lg bg-white max-w-sm">
                     <a href="#!">
-                        <img class="rounded-t-lg" src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" alt="" />
+                        <img class="rounded-t-lg h-44 w-full" src={img} alt="" />
                     </a>
                     <div class="p-6">
                         <h5 class="text-gray-900 text-xl font-medium mb-2">Card title</h5>
