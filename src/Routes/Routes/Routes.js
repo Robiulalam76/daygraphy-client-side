@@ -1,4 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
+import PriveteRoute from "../../Context/PriveteRoute/PriveteRoute";
 import Main from "../../Layout/Main";
 import About from "../../Pages/About/About";
 import Blogs from "../../Pages/Blogs/Blogs/Blogs";
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
             { path: '/blogs', element: <Blogs></Blogs> },
             { path: '/login', element: <Login></Login> },
             { path: '/signup', element: <Signup></Signup> },
-            { path: '/profile', element: <Profile></Profile> },
+            { path: '/profile', element: <PriveteRoute><Profile></Profile></PriveteRoute> },
         ]
     }
 ])

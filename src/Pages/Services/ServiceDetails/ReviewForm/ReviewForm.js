@@ -1,39 +1,13 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../../../../Context/AuthProvider/AuthProvider';
 
-const ReviewForm = ({ service }) => {
-    const { user } = useContext(AuthContext)
-    const { _id } = service;
+const ReviewForm = ({ service, handleReview }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault()
-        const message = event.target.message.value
-        // console.log(message);
-
-        const review = {
-            serviceId: _id,
-            name: user?.displayName,
-            img: user?.photoURL,
-            email: user?.email,
-            message: message
-        }
-        // console.log(review);
-
-        fetch('http://localhost:5000/reviews', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(review)
-        })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data);
-                if (data.acknowledged) {
-                    event.target.reset()
-                }
-            })
+        const message = event.target.message.value;
+        handleReview(message)
     }
+
     return (
         <div className="flex flex-col p-8 shadow-sm lg:p-12 bg-white">
             <div className="flex flex-col items-center w-full">
