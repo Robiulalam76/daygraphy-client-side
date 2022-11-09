@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import reply from '../../../../assets/icons/response (1).png'
 import edit from '../../../../assets/icons/edit.png'
 import trash from '../../../../assets/icons/trash.png'
 
-const AllReview = ({ review, handleDelete }) => {
+const AllReview = ({ review, handleDelete, handleReviewEdit }) => {
     const { _id, serviceId, name, img, email, message } = review;
-
+    const [showInput, setShowInput] = useState(false)
 
     return (
         <div className="w-full bg-white">
@@ -28,11 +28,24 @@ const AllReview = ({ review, handleDelete }) => {
                     <hr />
                     <div className="flex justify-end items-center mt-3">
                         <Link className='flex-grow text-gray-600 hover:text-blue-600'><img className='w-6 inline' src={reply} alt="" /> Reply</Link>
-                        <button ><img className='w-6 mr-6' src={edit} alt="" /></button>
+                        <button onClick={() => setShowInput(!showInput)} ><img className='w-6 mr-6' src={edit} alt="" /></button>
                         <button onClick={() => handleDelete(_id)}><img className='w-6' src={trash} alt="" /></button>
                     </div>
                 </div>
             </div>
+
+
+            <div className={`md:col-span-3 ${showInput ? 'block' : 'hidden'}`}>
+                <div className="flex flex-col shadow-sm bg-white">
+                    <div className="flex flex-col p-3 items-center w-full">
+                        <form onSubmit={() => handleReviewEdit(_id)} className="flex flex-col w-full">
+                            <textarea name='message' rows="3" placeholder="Message..." className="p-4 rounded-md resize-none dark:text-gray-100 dark:bg-gray-900" spellcheck="false"></textarea>
+                            <button type="submit" className="py-4 mt-3 font-semibold rounded-md dark:text-gray-900 dark:bg-violet-400">UPDATE</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
         </div>
     );
 };

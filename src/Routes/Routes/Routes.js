@@ -3,7 +3,6 @@ import PriveteRoute from "../../Context/PriveteRoute/PriveteRoute";
 import Main from "../../Layout/Main";
 import About from "../../Pages/About/About";
 import Blogs from "../../Pages/Blogs/Blogs/Blogs";
-import Galary from "../../Pages/Galary/Galary";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Profile/Login/Login";
 import Profile from "../../Pages/Profile/Profile/Profile";
@@ -18,8 +17,16 @@ const router = createBrowserRouter([
         path: '/',
         element: <Main></Main>,
         children: [
-            { path: '/', element: <Home></Home> },
-            { path: '/home', element: <Home></Home> },
+            {
+                path: '/',
+                loader: () => fetch('http://localhost:5000/latest-services/'),
+                element: <Home></Home>
+            },
+            {
+                path: '/home',
+                loader: () => fetch('http://localhost:5000/latest-services/'),
+                element: <Home></Home>
+            },
             {
                 path: '/services',
                 loader: () => fetch('http://localhost:5000/services/'),
@@ -35,7 +42,6 @@ const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`),
                 element: <OrderReq></OrderReq>
             },
-            { path: '/galary', element: <Galary></Galary> },
             { path: '/about', element: <About></About> },
             { path: '/blogs', element: <Blogs></Blogs> },
             { path: '/login', element: <Login></Login> },

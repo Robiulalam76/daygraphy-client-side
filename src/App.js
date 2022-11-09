@@ -5,7 +5,7 @@ import 'react-photo-view/dist/react-photo-view.css';
 
 function App() {
   return (
-    <div className='md:w-[85%] mx-auto'>
+    <div className='md:w-[85%] mx-auto bg-gray-300'>
       <RouterProvider router={router}></RouterProvider>
     </div>
   );

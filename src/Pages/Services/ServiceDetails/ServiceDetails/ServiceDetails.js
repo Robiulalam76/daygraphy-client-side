@@ -99,6 +99,46 @@ const ServiceDetails = () => {
         })
     }
 
+    const handleReviewEdit = (id, message) => {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger mx-3'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'Cancel',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                fetch(`http://localhost:5000/reviews/${id}`, {
+                    method: 'PATCH',
+                    headers: {
+                        'content-type': 'application/json',
+                        // authorization: `Bearer ${localStorage.getItem('user-token')}`
+                    },
+                    body: JSON.stringify({ message: message })
+                })
+
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.modifiedCount > 0) {
+                            const remaining = reviews.filter(review => review._id === id)
+                            remaining[message] = message
+                            setReviews([...reviews, remaining])
+                        }
+                    })
+            }
+        })
+    }
+
 
     return (
         <div className='my-12'>
@@ -202,6 +242,7 @@ const ServiceDetails = () => {
                                         key={review._id}
                                         review={review}
                                         handleDelete={handleDelete}
+                                        handleReviewEdit={handleReviewEdit}
                                     ></AllReview>)
                                 }
                             </>
