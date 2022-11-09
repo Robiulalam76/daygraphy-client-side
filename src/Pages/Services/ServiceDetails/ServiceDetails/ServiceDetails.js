@@ -28,7 +28,6 @@ const ServiceDetails = () => {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                authorization: `Bearer ${localStorage.getItem('user-token')}`
             },
             body: JSON.stringify(review)
         })

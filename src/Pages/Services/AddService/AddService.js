@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import useTitle from '../../../Hooks/useTitle';
+import Swal from 'sweetalert2'
 
 const AddService = () => {
     useTitle('Add-Service')
@@ -20,7 +21,11 @@ const AddService = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.acknowledged) {
-                    alert('User added successfully');
+                    Swal.fire(
+                        'Awosome!',
+                        'Service Add Seccessfully.',
+                        'success'
+                    )
                     event.target.reset();
                 }
             })
