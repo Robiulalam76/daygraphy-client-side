@@ -11,6 +11,7 @@ const ServiceDetails = () => {
     const service = useLoaderData();
     const { _id, price, title, ratings, description, img, photographer } = service;
     const [reviews, setReviews] = useState([])
+    const [sendRequest, setSendRequest] = useState(false);
 
     const handleReview = (event) => {
         event.preventDefault()
@@ -23,12 +24,12 @@ const ServiceDetails = () => {
             email: user?.email,
             message: message
         }
-        // console.log(review);
 
         fetch('http://localhost:5000/reviews', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                // authorization: `Bearer ${localStorage.getItem('user-token')}`
             },
             body: JSON.stringify(review)
         })
@@ -79,9 +80,9 @@ const ServiceDetails = () => {
 
                 fetch(`http://localhost:5000/reviews/${id}`, {
                     method: 'DELETE',
-                    headers: {
-                        authorization: `Bearer ${localStorage.getItem('user-token')}`
-                    }
+                    // headers: {
+                    //     authorization: `Bearer ${localStorage.getItem('user-token')}`
+                    // }
                 })
 
                     .then(res => res.json())
@@ -89,6 +90,7 @@ const ServiceDetails = () => {
                         if (data.deletedCount > 0) {
                             const remaining = reviews.filter(review => review._id !== id)
                             setReviews(remaining)
+                            setSendRequest(true)
                         }
                     })
             }
@@ -109,9 +111,11 @@ const ServiceDetails = () => {
             body: JSON.stringify(UpdateMessage)
         })
 
-            .then(res => res.json())
+            .then(res => {
+                return res.json()
+            })
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 if (data.modifiedCount > 0) {
                     const remaining = reviews.filter(review => review._id !== id)
                     const update = reviews.find(review => review._id === id)
@@ -121,6 +125,17 @@ const ServiceDetails = () => {
                 }
             })
     }
+
+    useEffect(() => {
+        if (sendRequest) {
+            //send the request
+            fetch('http://localhost:5000/reviews')
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                })
+        }
+    }, [sendRequest]);
 
 
     return (
@@ -173,51 +188,52 @@ const ServiceDetails = () => {
                 </div>
 
 
-                {/* review list */}
+                {/*---------everyone review form --------*/}
                 <div className='md:col-span-3'>
                     <div className="flex flex-col p-8 shadow-sm lg:p-12 bg-white">
-                        <div className="flex flex-col items-center w-full">
-                            <h2 className="text-3xl font-semibold text-center">Your opinion matters!</h2>
-                            <div className="flex flex-col items-center py-6 space-y-3">
-                                <span className="text-center">How was your experience?</span>
-                                <div className="flex space-x-3">
-                                    <button type="button" title="Rate 1 stars" aria-label="Rate 1 stars">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-10 h-10 dark:text-yellow-500">
-                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                                        </svg>
-                                    </button>
-                                    <button type="button" title="Rate 2 stars" aria-label="Rate 2 stars">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-10 h-10 dark:text-yellow-500">
-                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                                        </svg>
-                                    </button>
-                                    <button type="button" title="Rate 3 stars" aria-label="Rate 3 stars">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-10 h-10 dark:text-yellow-500">
-                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                                        </svg>
-                                    </button>
-                                    <button type="button" title="Rate 4 stars" aria-label="Rate 4 stars">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-10 h-10 dark:text-yellow-500">
-                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                                        </svg>
-                                    </button>
-                                    <button type="button" title="Rate 5 stars" aria-label="Rate 5 stars">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-10 h-10 dark:text-gray-600">
-                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                                        </svg>
-                                    </button>
-                                </div>
+                        <h2 className="text-3xl font-semibold text-center text-gray-900">Send Your Review</h2>
+                        <div className="flex flex-col items-center py-3">
+                            <span className="text-center">Give ratings if you like the service</span>
+                            <div className="flex space-x-3 mt-3">
+                                <button type="button" title="Rate 1 stars" aria-label="Rate 1 stars">
+                                    <img className='w-6' src="https://cdn-icons-png.flaticon.com/512/616/616489.png" alt="" />
+                                </button>
+                                <button type="button" title="Rate 2 stars" aria-label="Rate 2 stars">
+                                    <img className='w-6' src="https://cdn-icons-png.flaticon.com/512/616/616489.png" alt="" />
+                                </button>
+                                <button type="button" title="Rate 3 stars" aria-label="Rate 3 stars">
+                                    <img className='w-6' src="https://cdn-icons-png.flaticon.com/512/616/616489.png" alt="" />
+                                </button>
+                                <button type="button" title="Rate 4 stars" aria-label="Rate 4 stars">
+                                    <img className='w-6' src="https://cdn-icons-png.flaticon.com/512/616/616489.png" alt="" />
+                                </button>
+                                <button type="button" title="Rate 5 stars" aria-label="Rate 5 stars">
+                                    <img className='w-6' src="https://cdn-icons-png.flaticon.com/512/616/616489.png" alt="" />
+                                </button>
                             </div>
+                        </div>
+                        {user?.uid ?
                             <form onSubmit={handleReview} className="flex flex-col w-full">
                                 <textarea name='message' rows="3" placeholder="Message..." className="p-4 rounded-md resize-none dark:text-gray-100 dark:bg-gray-900" spellcheck="false"></textarea>
                                 <button type="submit" className="py-4 my-8 font-semibold rounded-md dark:text-gray-900 dark:bg-violet-400">SEND REVIEW</button>
                             </form>
-                        </div>
+                            :
+                            <form className="flex flex-col w-full relative">
+                                <textarea disabled name='message' rows="3" placeholder="Please login to add a review" className="p-4 rounded-md resize-none dark:text-gray-100 dark:bg-gray-900" spellcheck="false"></textarea>
+                                <div className='absolute top-8 md:left-10 lg:left-32 z-50'>
+                                    <h1 className='text-2xl font-bold text-white-900 text-center'>Please <Link className='text-blue-600 hover:text-blue-700' to='/login'>login</Link> to add a review.</h1>
+                                </div>
+                                <button disabled type="submit" className="py-4 my-8 font-semibold rounded-md dark:text-gray-900 dark:bg-gray-300">SEND REVIEW</button>
+                            </form>
+                        }
                     </div>
                 </div>
-                <div className='md:col-span-2 w-full  md:overflow-auto h-[500px]'>
+
+
+                {/*---------all review list --------*/}
+                <div className='md:col-span-2 w-full md:overflow-auto h-[480px]'>
                     {
-                        reviews.length === 0 ? <h1 className='text-3xl font-bold text-white text-center mt-12'>No Reviews</h1>
+                        reviews.length === 0 ? <h1 className='text-3xl font-bold text-gray-900 text-center mt-12'>No Reviews</h1>
                             :
                             <>
                                 {

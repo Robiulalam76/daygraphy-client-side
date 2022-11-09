@@ -1,5 +1,6 @@
 import React from 'react';
 import './blog.css'
+import img from '../../../assets/photo-grapher/banner (4).jpeg'
 
 const BlogCard = () => {
     return (
@@ -8,9 +9,9 @@ const BlogCard = () => {
                 <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                     <div class="flex justify-between items-center mb-5 text-gray-500">
                         <div class="flex items-center space-x-4">
-                            <img class="w-7 h-7 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png" alt="Jese Leos avatar" />
+                            <img class="w-7 h-7 rounded-full" src={img} alt="Jese Leos avatar" />
                             <span class="font-medium dark:text-white">
-                                Jese Leos
+                                H Al Hadi
                             </span>
                         </div>
                         <span class="text-sm">1 days ago</span>
@@ -51,9 +52,9 @@ const BlogCard = () => {
                 <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                     <div class="flex justify-between items-center mb-5 text-gray-500">
                         <div class="flex items-center space-x-4">
-                            <img class="w-7 h-7 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png" alt="Jese Leos avatar" />
+                            <img class="w-7 h-7 rounded-full" src={img} alt="Jese Leos avatar" />
                             <span class="font-medium dark:text-white">
-                                Jese Leos
+                                H Al Hadi
                             </span>
                         </div>
                         <span class="text-sm">1 days ago</span>
@@ -79,9 +80,9 @@ const BlogCard = () => {
                 <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                     <div class="flex justify-between items-center mb-5 text-gray-500">
                         <div class="flex items-center space-x-4">
-                            <img class="w-7 h-7 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png" alt="Jese Leos avatar" />
+                            <img class="w-7 h-7 rounded-full" src={img} alt="Jese Leos avatar" />
                             <span class="font-medium dark:text-white">
-                                Jese Leos
+                                H Al Hadi
                             </span>
                         </div>
                         <span class="text-sm">1 days ago</span>
@@ -121,9 +122,9 @@ const BlogCard = () => {
                 <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
                     <div class="flex justify-between items-center mb-5 text-gray-500">
                         <div class="flex items-center space-x-4">
-                            <img class="w-7 h-7 rounded-full" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png" alt="Jese Leos avatar" />
+                            <img class="w-7 h-7 rounded-full" src={img} alt="Jese Leos avatar" />
                             <span class="font-medium dark:text-white">
-                                Jese Leos
+                                H Al Hadi
                             </span>
                         </div>
                         <span class="text-sm">1 days ago</span>

@@ -6,8 +6,8 @@ const ServiceCard = ({ service }) => {
     const { _id, price, title, ratings, description, img, photographer } = service;
     return (
         <div>
-            <div class="flex justify-center">
-                <div class="rounded-lg shadow-lg bg-white max-w-sm">
+            <div class="flex justify-center mx-auto">
+                <div class="rounded-lg shadow-lg bg-white max-w-sm h-[460px] w-full">
                     <a href="#!">
 
                         {/* click to img show */}

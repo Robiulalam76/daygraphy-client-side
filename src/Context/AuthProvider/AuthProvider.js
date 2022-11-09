@@ -18,10 +18,6 @@ const AuthProvider = ({ children }) => {
         return signInWithPopup(auth, provider)
     }
 
-    const signupWithFacebook = (provider) => {
-        setLoading(true)
-        return signInWithPopup(auth, provider)
-    }
     const signupWithGithub = (provider) => {
         setLoading(true)
         return signInWithPopup(auth, provider)
@@ -39,27 +35,29 @@ const AuthProvider = ({ children }) => {
 
     const logout = () => {
         setLoading(true)
-        // localStorage.removeItem('user-token')
+        localStorage.removeItem('user-token')
         return signOut(auth)
     }
 
     useEffect(() => {
-        const unSubscribe = onAuthStateChanged(auth, currentUser => {
-            setUser(currentUser)
-            setLoading(false)
-        })
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
+            setLoading(false);
+        });
+
         return () => {
-            unSubscribe()
+            unsubscribe();
         }
-    }, [auth])
+
+    }, [])
 
 
     const authInfo = {
         user,
         loading,
+        setLoading,
         signupEmailAndPassword,
         signupWithGoogle,
-        signupWithFacebook,
         signupWithGithub,
         updateUserProfile,
         loginWithEmailPassword,

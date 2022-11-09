@@ -4,7 +4,7 @@ import reply from '../../../../assets/icons/response (1).png'
 import edit from '../../../../assets/icons/edit.png'
 import trash from '../../../../assets/icons/trash.png'
 
-const AllReview = ({ review, handleDelete, handleReviewEdit: handleEdit }) => {
+const AllReview = ({ review, handleDelete, handleEdit }) => {
     const { _id, serviceId, name, img, email, message } = review;
     const [showInput, setShowInput] = useState(false)
     const [editMessage, setEditMessage] = useState('')
@@ -16,8 +16,8 @@ const AllReview = ({ review, handleDelete, handleReviewEdit: handleEdit }) => {
     }
 
     return (
-        <div className="w-full bg-white">
-            <div className="bg-white p-6 shadow">
+        <div className="w-full border-t-4 border-l-4 border-blue-900">
+            <div className="bg-gray-100 p-6 shadow">
                 <div className="flex items-center border-b border-gray-200">
                     <img src={img} className="w-12 h-12 rounded-full" alt='' />
                     <div className="flex items-start justify-between w-full">
@@ -29,7 +29,7 @@ const AllReview = ({ review, handleDelete, handleReviewEdit: handleEdit }) => {
                     </div>
                 </div>
                 <div className="px-2">
-                    <p className="text-sm leading-5 py-4 text-gray-600">
+                    <p className="text-xl leading-5 py-4 text-black">
                         {message}
                     </p>
                     <hr />
@@ -47,7 +47,9 @@ const AllReview = ({ review, handleDelete, handleReviewEdit: handleEdit }) => {
                     <div className="flex flex-col p-3 items-center w-full">
                         <div className="flex flex-col w-full">
                             <textarea onChange={handleOnchange} name='message' rows="3" placeholder="Message..." className="p-4 rounded-md resize-none dark:text-gray-100 dark:bg-gray-900"></textarea>
-                            <button onClick={() => handleEdit(_id, editMessage)} className="py-4 mt-3 font-semibold rounded-md dark:text-gray-900 dark:bg-violet-400">UPDATE</button>
+                            <Link className='w-full' onClick={() => setShowInput(false)}>
+                                <button onClick={() => handleEdit(_id, editMessage)} className="py-2 px-4 mt-3 font-semibold rounded-md dark:text-gray-900 dark:bg-violet-400">UPDATE</button>
+                            </Link>
                         </div>
                     </div>
                 </div>
