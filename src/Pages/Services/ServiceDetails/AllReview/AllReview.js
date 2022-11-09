@@ -17,27 +17,30 @@ const AllReview = ({ review, handleDelete, handleEdit }) => {
 
     return (
         <div className="w-full border-t-4 border-l-4 border-blue-900">
-            <div className="bg-gray-100 p-6 shadow">
-                <div className="flex items-center border-b border-gray-200">
-                    <img src={img} className="w-12 h-12 rounded-full" alt='' />
-                    <div className="flex items-start justify-between w-full">
-                        <div className="pl-3 w-full">
-                            <p className="text-xl font-medium leading-5 text-gray-800">{name}</p>
-                            <p className="text-sm leading-normal pt-2 text-gray-500">{email}</p>
+            <div className="bg-gray-100 p-6 shadow border-x-2 border-gray-400">
+                <div className='flex justify-between items-center  pb-2 border-b border-gray-600'>
+                    <div className="flex items-center">
+                        <img src={img} className="w-12 border-blue-600 border-2 h-12 rounded-full" alt='' />
+                        <div className="flex items-center justify-between mb-3">
+                            <div className="pl-3 w-full ">
+                                <p className="text-xl font-medium leading-5 text-gray-800">{name ? name : <small>No Name</small>}</p>
+                                <p className="text-sm leading-normal text-gray-500">{email ? email : <small>Email Not Found</small>}</p>
+                            </div>
                         </div>
-                        <h1>tarikh</h1>
                     </div>
+                    <small className='text-right'>1s ago</small>
                 </div>
                 <div className="px-2">
                     <p className="text-xl leading-5 py-4 text-black">
                         {message}
                     </p>
-                    <hr />
-                    <div className="flex justify-end items-center mt-3">
-                        <Link className='flex-grow text-gray-600 hover:text-blue-600'><img className='w-6 inline' src={reply} alt="" /> Reply</Link>
-                        <button onClick={() => setShowInput(!showInput)} ><img className='w-6 mr-6' src={edit} alt="" /></button>
-                        <button onClick={() => handleDelete(_id)}><img className='w-6' src={trash} alt="" /></button>
-                    </div>
+
+
+                </div>
+                <div className="flex justify-end p-3 items-center border-t border-gray-600 bg-gray-300 mt-3">
+                    <Link className='flex-grow text-gray-600 hover:text-blue-600'><img className='w-6 inline' src={reply} alt="" /> Reply</Link>
+                    <button onClick={() => setShowInput(!showInput)} ><img className='w-6 mr-6' src={edit} alt="" /></button>
+                    <button onClick={() => handleDelete(_id)}><img className='w-6' src={trash} alt="" /></button>
                 </div>
             </div>
 

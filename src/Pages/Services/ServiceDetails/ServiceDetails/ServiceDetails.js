@@ -11,7 +11,6 @@ const ServiceDetails = () => {
     const service = useLoaderData();
     const { _id, price, title, ratings, description, img, photographer } = service;
     const [reviews, setReviews] = useState([])
-    const [sendRequest, setSendRequest] = useState(false);
 
     const handleReview = (event) => {
         event.preventDefault()
@@ -29,7 +28,7 @@ const ServiceDetails = () => {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
-                // authorization: `Bearer ${localStorage.getItem('user-token')}`
+                authorization: `Bearer ${localStorage.getItem('user-token')}`
             },
             body: JSON.stringify(review)
         })
@@ -80,9 +79,9 @@ const ServiceDetails = () => {
 
                 fetch(`http://localhost:5000/reviews/${id}`, {
                     method: 'DELETE',
-                    // headers: {
-                    //     authorization: `Bearer ${localStorage.getItem('user-token')}`
-                    // }
+                    headers: {
+                        authorization: `Bearer ${localStorage.getItem('user-token')}`
+                    }
                 })
 
                     .then(res => res.json())
@@ -90,7 +89,6 @@ const ServiceDetails = () => {
                         if (data.deletedCount > 0) {
                             const remaining = reviews.filter(review => review._id !== id)
                             setReviews(remaining)
-                            setSendRequest(true)
                         }
                     })
             }
@@ -106,7 +104,7 @@ const ServiceDetails = () => {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
-                // authorization: `Bearer ${localStorage.getItem('user-token')}`
+                authorization: `Bearer ${localStorage.getItem('user-token')}`
             },
             body: JSON.stringify(UpdateMessage)
         })
@@ -125,17 +123,6 @@ const ServiceDetails = () => {
                 }
             })
     }
-
-    useEffect(() => {
-        if (sendRequest) {
-            //send the request
-            fetch('http://localhost:5000/reviews')
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                })
-        }
-    }, [sendRequest]);
 
 
     return (
@@ -214,12 +201,12 @@ const ServiceDetails = () => {
                         </div>
                         {user?.uid ?
                             <form onSubmit={handleReview} className="flex flex-col w-full">
-                                <textarea name='message' rows="3" placeholder="Message..." className="p-4 rounded-md resize-none dark:text-gray-100 dark:bg-gray-900" spellcheck="false"></textarea>
+                                <textarea name='message' rows="3" placeholder="Message..." className="p-4 rounded-md resize-none dark:text-gray-100 bg-gray-400 dark:bg-gray-900" spellcheck="false"></textarea>
                                 <button type="submit" className="py-4 my-8 font-semibold rounded-md dark:text-gray-900 dark:bg-violet-400">SEND REVIEW</button>
                             </form>
                             :
                             <form className="flex flex-col w-full relative">
-                                <textarea disabled name='message' rows="3" placeholder="Please login to add a review" className="p-4 rounded-md resize-none dark:text-gray-100 dark:bg-gray-900" spellcheck="false"></textarea>
+                                <textarea disabled name='message' rows="3" placeholder="Please login to add a review" className="p-4 bg-red-100 border-2 border-red-600 rounded-md resize-none dark:text-gray-100" spellcheck="false"></textarea>
                                 <div className='absolute top-8 md:left-10 lg:left-32 z-50'>
                                     <h1 className='text-2xl font-bold text-white-900 text-center'>Please <Link className='text-blue-600 hover:text-blue-700' to='/login'>login</Link> to add a review.</h1>
                                 </div>
@@ -241,7 +228,7 @@ const ServiceDetails = () => {
                                         key={review._id}
                                         review={review}
                                         handleDelete={handleDelete}
-                                        handleReviewEdit={handleEdit}
+                                        handleEdit={handleEdit}
                                     ></AllReview>)
                                 }
                             </>

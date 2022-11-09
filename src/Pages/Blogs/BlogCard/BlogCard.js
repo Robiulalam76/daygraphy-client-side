@@ -6,17 +6,17 @@ const BlogCard = () => {
     return (
         <section class="bg-white grid grid-cols-1 gap-8 md:p-12">
             <div class="">
-                <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-                    <div class="flex justify-between items-center mb-5 text-gray-500">
+                <article class="p-6 rounded-lg border border-gray-200 shadow-md text-white bg-gray-800 dark:border-gray-700">
+                    <div class="flex justify-between items-center mb-5">
                         <div class="flex items-center space-x-4">
                             <img class="w-7 h-7 rounded-full" src={img} alt="Jese Leos avatar" />
-                            <span class="font-medium dark:text-white">
+                            <span class="font-medium text-white">
                                 H Al Hadi
                             </span>
                         </div>
                         <span class="text-sm">1 days ago</span>
                     </div>
-                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><a href="#">1. Difference between SQL and NoSQL</a></h2>
+                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-white"><a href="#">1. Difference between SQL and NoSQL</a></h2>
                     <div class="mb-5 font-ligh">
                         <table>
                             <tr>
@@ -49,17 +49,17 @@ const BlogCard = () => {
             </div>
 
             <div class="">
-                <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-                    <div class="flex justify-between items-center mb-5 text-gray-500">
+                <article class="p-6 rounded-lg border border-gray-200 shadow-md text-white bg-gray-800 dark:border-gray-700">
+                    <div class="flex justify-between items-center mb-5">
                         <div class="flex items-center space-x-4">
                             <img class="w-7 h-7 rounded-full" src={img} alt="Jese Leos avatar" />
-                            <span class="font-medium dark:text-white">
+                            <span class="font-medium text-white">
                                 H Al Hadi
                             </span>
                         </div>
                         <span class="text-sm">1 days ago</span>
                     </div>
-                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><a href="#">2. What is JWT, and how does it work?</a></h2>
+                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-white"><a href="#">2. What is JWT, and how does it work?</a></h2>
                     <p class="mb-5 font-ligh">
                         A JSON web token(JWT) is JSON Object which is used to securely transfer information over the web(between two parties). It can be used for an authentication system and can also be used for information exchange.The token is mainly composed of header, payload, signature. These three parts are separated by dots(.). JWT defines the structure of information we are sending from one party to the another, and it comes in two forms – Serialized, Deserialized. The Serialized approach is mainly used to transfer the data through the network with each request and response. While the deserialized approach is used to read and write data to the web token.
                         <br />
@@ -77,17 +77,17 @@ const BlogCard = () => {
             </div>
 
             <div class="">
-                <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-                    <div class="flex justify-between items-center mb-5 text-gray-500">
+                <article class="p-6 rounded-lg border border-gray-200 shadow-md text-white bg-gray-800 dark:border-gray-700">
+                    <div class="flex justify-between items-center mb-5 ">
                         <div class="flex items-center space-x-4">
                             <img class="w-7 h-7 rounded-full" src={img} alt="Jese Leos avatar" />
-                            <span class="font-medium dark:text-white">
+                            <span class="font-medium text-white">
                                 H Al Hadi
                             </span>
                         </div>
                         <span class="text-sm">1 days ago</span>
                     </div>
-                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><a href="#">3. What is the difference between javascript and NodeJS?</a></h2>
+                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-white"><a href="#">3. What is the difference between javascript and NodeJS?</a></h2>
                     <p class="mb-5 font-ligh">
                         1. NodeJS :
                         NodeJS is a cross-platform and opensource Javascript runtime environment that allows the javascript to be run on the server-side. Nodejs allows Javascript code to run outside the browser. Nodejs comes with a lot of modules and mostly used in web development. <br /><br />
@@ -119,17 +119,17 @@ const BlogCard = () => {
             </div>
 
             <div class="">
-                <article class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
-                    <div class="flex justify-between items-center mb-5 text-gray-500">
+                <article class="p-6 rounded-lg border border-gray-200 shadow-md text-white bg-gray-800 dark:border-gray-700">
+                    <div class="flex justify-between items-center mb-5 ">
                         <div class="flex items-center space-x-4">
                             <img class="w-7 h-7 rounded-full" src={img} alt="Jese Leos avatar" />
-                            <span class="font-medium dark:text-white">
+                            <span class="font-medium text-white">
                                 H Al Hadi
                             </span>
                         </div>
                         <span class="text-sm">1 days ago</span>
                     </div>
-                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"><a href="#">4. How does NodeJS handle multiple requests at the same time?</a></h2>
+                    <h2 class="mb-2 text-2xl font-bold tracking-tight text-white"><a href="#">4. How does NodeJS handle multiple requests at the same time?</a></h2>
                     <p class="mb-5 font-ligh">
                         NodeJS receives multiple client requests and places them into EventQueue. NodeJS is built with the concept of event-driven architecture. NodeJS has its own EventLoop which is an infinite loop that receives requests and processes them. EventLoop is the listener for the EventQueue.
 

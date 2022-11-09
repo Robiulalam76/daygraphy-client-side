@@ -1,14 +1,15 @@
 import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import Swal from 'sweetalert2'
 import useTitle from '../../../Hooks/useTitle';
 
 const Login = () => {
     useTitle('Login')
-    const { user, logout, setLoading, loginWithEmailPassword, signupWithGoogle } = useContext(AuthContext)
+    const { user, logout, setLoading, loginWithEmailPassword, signupWithGoogle, signupWithGithub } = useContext(AuthContext)
     const googleProvider = new GoogleAuthProvider();
+    const githubProvider = new GithubAuthProvider();
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || "/";
@@ -19,7 +20,6 @@ const Login = () => {
         const password = event.target.password.value;
 
         loginWithEmailPassword(email, password)
-        setLoading(true)
             .then((result) => {
                 const user = result.user;
                 const currentUser = {
@@ -35,7 +35,7 @@ const Login = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        // console.log(data.token)
+                        console.log(data.token)
                         localStorage.setItem('user-token', data.token)
                         navigate(from, { replace: true });
                         Swal.fire(
@@ -44,19 +44,15 @@ const Login = () => {
                             'success'
                         )
                     })
-
             })
             .catch((error) => {
-                // console.error(error);
-            })
-            .finally(() => {
-                setLoading(false)
+                console.error(error);
             })
     }
 
+    // --------Login with Google--------
     const handleSignupWithGoogle = () => {
         signupWithGoogle(googleProvider)
-        setLoading(true)
             .then(result => {
                 const user = result.user
                 const currentUser = {
@@ -88,6 +84,40 @@ const Login = () => {
                 setLoading(false)
             })
     }
+
+    // --------Login with Github--------
+    const handleSignupWithGithub = () => {
+        signupWithGithub(githubProvider)
+            .then(result => {
+                const user = result.user
+                const currentUser = {
+                    email: user?.email
+                }
+                // console.log(currentUser);
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data.token)
+                        localStorage.setItem('user-token', data.token)
+                        navigate(from, { replace: true });
+                        Swal.fire(
+                            'Welcome To You!',
+                            'Your Account Login Seccessfully.',
+                            'success'
+                        )
+                        setLoading(false)
+                    })
+            })
+            .catch(error => console.error(error))
+    };
+
+
     return (
 
         <div className="bg-blue-50 py-8 flex flex-col">
@@ -118,7 +148,7 @@ const Login = () => {
                             <img className='w-5 mr-3' src="https://cdn-icons-png.flaticon.com/512/281/281764.png" alt="" />
                             <span>Google</span>
                         </button>
-                        <button className='bg-cyan-600 px-4 rounded-md flex justify-between items-center text-white font-bold py-2'>
+                        <button onClick={() => handleSignupWithGithub()} className='bg-cyan-600 px-4 rounded-md flex justify-between items-center text-white font-bold py-2'>
                             <img className='w-6 mr-3' src="https://img.icons8.com/glyph-neue/512/github.png" alt="" />
                             <span>Github</span>
                         </button>
