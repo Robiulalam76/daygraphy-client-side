@@ -11,13 +11,9 @@ const ServiceDetails = () => {
     const service = useLoaderData();
     const { _id, price, title, ratings, description, img, photographer } = service;
     const [reviews, setReviews] = useState([])
-    // console.log(reviews);
-
-
-
 
     const handleReview = (event) => {
-        // event.preventDefault()
+        event.preventDefault()
         const message = event.target.message.value
 
         const review = {
@@ -99,44 +95,31 @@ const ServiceDetails = () => {
         })
     }
 
-    const handleReviewEdit = (id, message) => {
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: 'btn btn-success',
-                cancelButton: 'btn btn-danger mx-3'
+    const handleEdit = (id, message) => {
+        // console.log(id, message);
+
+        const UpdateMessage = { message }
+
+        fetch(`http://localhost:5000/reviews/${id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+                // authorization: `Bearer ${localStorage.getItem('user-token')}`
             },
-            buttonsStyling: false
+            body: JSON.stringify(UpdateMessage)
         })
 
-        swalWithBootstrapButtons.fire({
-            title: 'Are you sure?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes',
-            cancelButtonText: 'Cancel',
-            reverseButtons: true
-        }).then((result) => {
-            if (result.isConfirmed) {
-
-                fetch(`http://localhost:5000/reviews/${id}`, {
-                    method: 'PATCH',
-                    headers: {
-                        'content-type': 'application/json',
-                        // authorization: `Bearer ${localStorage.getItem('user-token')}`
-                    },
-                    body: JSON.stringify({ message: message })
-                })
-
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.modifiedCount > 0) {
-                            const remaining = reviews.filter(review => review._id === id)
-                            remaining[message] = message
-                            setReviews([...reviews, remaining])
-                        }
-                    })
-            }
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                if (data.modifiedCount > 0) {
+                    const remaining = reviews.filter(review => review._id !== id)
+                    const update = reviews.find(review => review._id === id)
+                    update.message = message
+                    const newMessage = [update, ...remaining]
+                    setReviews(newMessage)
+                }
+            })
     }
 
 
@@ -242,7 +225,7 @@ const ServiceDetails = () => {
                                         key={review._id}
                                         review={review}
                                         handleDelete={handleDelete}
-                                        handleReviewEdit={handleReviewEdit}
+                                        handleReviewEdit={handleEdit}
                                     ></AllReview>)
                                 }
                             </>

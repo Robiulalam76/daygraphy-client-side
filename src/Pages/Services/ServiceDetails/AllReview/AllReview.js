@@ -4,9 +4,16 @@ import reply from '../../../../assets/icons/response (1).png'
 import edit from '../../../../assets/icons/edit.png'
 import trash from '../../../../assets/icons/trash.png'
 
-const AllReview = ({ review, handleDelete, handleReviewEdit }) => {
+const AllReview = ({ review, handleDelete, handleReviewEdit: handleEdit }) => {
     const { _id, serviceId, name, img, email, message } = review;
     const [showInput, setShowInput] = useState(false)
+    const [editMessage, setEditMessage] = useState('')
+
+    const handleOnchange = (event) => {
+        event.preventDefault()
+        const message = event.target.value
+        setEditMessage(message)
+    }
 
     return (
         <div className="w-full bg-white">
@@ -38,14 +45,13 @@ const AllReview = ({ review, handleDelete, handleReviewEdit }) => {
             <div className={`md:col-span-3 ${showInput ? 'block' : 'hidden'}`}>
                 <div className="flex flex-col shadow-sm bg-white">
                     <div className="flex flex-col p-3 items-center w-full">
-                        <form onSubmit={() => handleReviewEdit(_id)} className="flex flex-col w-full">
-                            <textarea name='message' rows="3" placeholder="Message..." className="p-4 rounded-md resize-none dark:text-gray-100 dark:bg-gray-900" spellcheck="false"></textarea>
-                            <button type="submit" className="py-4 mt-3 font-semibold rounded-md dark:text-gray-900 dark:bg-violet-400">UPDATE</button>
-                        </form>
+                        <div className="flex flex-col w-full">
+                            <textarea onChange={handleOnchange} name='message' rows="3" placeholder="Message..." className="p-4 rounded-md resize-none dark:text-gray-100 dark:bg-gray-900"></textarea>
+                            <button onClick={() => handleEdit(_id, editMessage)} className="py-4 mt-3 font-semibold rounded-md dark:text-gray-900 dark:bg-violet-400">UPDATE</button>
+                        </div>
                     </div>
                 </div>
             </div>
-
         </div>
     );
 };
