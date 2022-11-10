@@ -70,12 +70,7 @@ const AddService = () => {
                         className="block bg-white border border-grey-light w-full p-3 rounded mb-4"
                         name="img"
                         placeholder="Banner Image URL" required />
-                    <input
-                        onBlur={handleInputBlur}
-                        type="text"
-                        className="block bg-white border border-grey-light w-full p-3 rounded mb-4"
-                        name="description"
-                        placeholder="Description" required />
+
                     <input
                         onBlur={handleInputBlur}
                         type="text"
@@ -92,6 +87,15 @@ const AddService = () => {
                         defaultValue={'4.5'}
                         readOnly
                         placeholder="Ratings" required />
+
+                    <textarea
+                        onBlur={handleInputBlur}
+                        type="text"
+                        className="block bg-white border border-grey-light w-full h-[200px] p-3 rounded mb-4 resize-none"
+                        name="description"
+                        placeholder="Description" spellcheck="false" required
+
+                    ></textarea>
 
                     <button
                         type="submit"
