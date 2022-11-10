@@ -15,6 +15,17 @@ const ServiceDetails = () => {
     const { _id, img, } = service;
     const [reviews, setReviews] = useState([])
 
+
+    function loadReviews() {
+        fetch(`https://daygraphy-server.vercel.app/reviews?_id=${_id}`)
+            .then(res => {
+                return res.json()
+            })
+            .then(data => {
+                setReviews(data)
+            })
+    }
+
     const getTime = (date) => {
         var hours = date.getHours();
         var minutes = date.getMinutes();
@@ -55,6 +66,7 @@ const ServiceDetails = () => {
                     event.target.reset()
                     const newReview = [review, ...reviews]
                     setReviews(newReview)
+                    loadReviews()
                 }
             })
     }
@@ -114,6 +126,7 @@ const ServiceDetails = () => {
                         if (data.deletedCount > 0) {
                             const remaining = reviews.filter(review => review._id !== id)
                             setReviews(remaining)
+                            loadReviews()
                         }
                     })
             }
@@ -150,6 +163,7 @@ const ServiceDetails = () => {
                     update.message = message
                     const newMessage = [update, ...remaining]
                     setReviews(newMessage)
+                    loadReviews()
                 }
             })
     }

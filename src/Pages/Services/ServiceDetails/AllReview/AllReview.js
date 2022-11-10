@@ -4,7 +4,7 @@ import reply from '../../../../assets/icons/response (1).png'
 import edit from '../../../../assets/icons/edit.png'
 import trash from '../../../../assets/icons/trash.png'
 
-const AllReview = ({ review, handleDelete, handleEdit }) => {
+const AllReview = ({ review, handleDelete, handleEdit, }) => {
     const { _id, serviceId, time, name, img, email, message } = review;
     const [showInput, setShowInput] = useState(false)
     const [editMessage, setEditMessage] = useState('')

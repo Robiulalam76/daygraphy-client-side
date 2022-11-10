@@ -8,10 +8,28 @@ const MyReview = () => {
     useTitle('My Review')
     const { user, logout } = useContext(AuthContext)
     const [reviews, setReviews] = useState([])
-    useEffect(() => {
-        const token = localStorage.getItem('user-token')
-        console.log(token);
-    }, [])
+
+    function loadReviews() {
+        fetch(`https://daygraphy-server.vercel.app/my-reviews?email=${user?.email}`, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem('user-token')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: '401 Unauthorized Access!',
+                    })
+                    return logout()
+                }
+                return res.json()
+            })
+            .then(data => {
+                setReviews(data)
+            })
+    }
 
     useEffect(() => {
         fetch(`https://daygraphy-server.vercel.app/my-reviews?email=${user?.email}`, {
@@ -36,9 +54,8 @@ const MyReview = () => {
     }, [user?.email, logout])
 
 
+    // handle Delete
     const handleDelete = (id) => {
-
-        // console.log(id);
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
@@ -78,12 +95,15 @@ const MyReview = () => {
                         if (data.deletedCount > 0) {
                             const remaining = reviews.filter(review => review._id !== id)
                             setReviews(remaining)
+                            loadReviews()
                         }
                     })
             }
         })
     }
 
+
+    // handle Edit
     const handleEdit = (id, message) => {
         const UpdateMessage = { message }
 
@@ -114,6 +134,7 @@ const MyReview = () => {
                     update.message = message
                     const newMessage = [update, ...remaining]
                     setReviews(newMessage)
+                    loadReviews()
                 }
             })
     }
