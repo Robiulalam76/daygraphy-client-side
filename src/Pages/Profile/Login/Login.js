@@ -4,10 +4,11 @@ import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import Swal from 'sweetalert2'
 import useTitle from '../../../Hooks/useTitle';
+import Loading from '../../Shared/Loading/Loading';
 
 const Login = () => {
     useTitle('Login')
-    const { user, logout, setLoading, loginWithEmailPassword, signupWithGoogle, signupWithGithub } = useContext(AuthContext)
+    const { loading, loginWithEmailPassword, signupWithGoogle, signupWithGithub } = useContext(AuthContext)
     const [errorPassword, setPasswordError] = useState("")
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
@@ -16,7 +17,6 @@ const Login = () => {
     const from = location.state?.from?.pathname || "/";
 
     const handleSubmit = (event) => {
-        setLoading(true)
         event.preventDefault();
         const email = event.target.email.value;
         const password = event.target.password.value;
@@ -64,7 +64,6 @@ const Login = () => {
 
     // --------Login with Google--------
     const handleSignupWithGoogle = () => {
-        setLoading(true)
         signupWithGoogle(googleProvider)
             .then(result => {
                 const user = result.user
@@ -89,18 +88,13 @@ const Login = () => {
                             'Your Account Login Seccessfully.',
                             'success'
                         )
-                        setLoading(false)
                     })
             })
             .catch(error => console.error(error))
-            .finally(() => {
-                setLoading(false)
-            })
     }
 
     // --------Login with Github--------
     const handleSignupWithGithub = () => {
-        setLoading(true)
         signupWithGithub(githubProvider)
             .then(result => {
                 const user = result.user
@@ -125,7 +119,6 @@ const Login = () => {
                             'Your Account Login Seccessfully.',
                             'success'
                         )
-                        setLoading(false)
                     })
             })
             .catch(error => console.error(error))
@@ -135,6 +128,9 @@ const Login = () => {
     return (
 
         <div className="bg-blue-50 py-8 flex flex-col">
+            {
+                loading === true && <Loading></Loading>
+            }
             <div className="container bg-cyan-200 px-6 py-4 rounded shadow-lg max-w-sm mx-auto flex-1 flex flex-col items-center justify-center">
                 <form onSubmit={handleSubmit} className=" text-black w-full">
                     <h1 className="mb-8 text-3xl font-bold text-center">Login</h1>

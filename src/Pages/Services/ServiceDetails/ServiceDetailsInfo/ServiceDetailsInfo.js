@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const ServiceDetailsInfo = ({ service }) => {
-    const { _id, price, title, ratings, description, img, photographer } = service;
+    const { _id, price, title, ratings, description, img, photographerIMG, photographer } = service;
     return (
         <div className="p-6 bg-white">
             <div className='flex justify-between items-center mb-2'>
@@ -10,10 +10,10 @@ const ServiceDetailsInfo = ({ service }) => {
                 <h1 className='text-blue-900 text-2xl md:text-4xl font-bold'>${price}</h1>
             </div>
             <div className='flex items-center mb-3'>
-                <Link to='/about'><img className='w-10 rounded-full' src={photographer} alt="" /></Link>
+                <Link to='/about'><img className='w-10 rounded-full' src={photographerIMG} alt="" /></Link>
                 <div className='ml-2'>
                     <small className='text-gray-900 font-semibold'>Photographer</small>
-                    <Link to='/about' className='text-gray-800 block'><small>H Al Hadi</small></Link>
+                    <Link to='/about' className='text-gray-800 block'><small>{photographer}</small></Link>
                 </div>
             </div>
             <p className="text-gray-700 text-base mb-4">

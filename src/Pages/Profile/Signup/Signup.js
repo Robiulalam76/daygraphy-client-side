@@ -4,9 +4,10 @@ import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import Swal from 'sweetalert2'
 import useTitle from '../../../Hooks/useTitle';
+import Loading from '../../Shared/Loading/Loading';
 
 const Signup = () => {
-    const { user, setLoading, signupEmailAndPassword, updateUserProfile, signupWithGoogle, signupWithGithub } = useContext(AuthContext);
+    const { loading, signupEmailAndPassword, updateUserProfile, signupWithGoogle, signupWithGithub } = useContext(AuthContext);
     const [passwordError, setPasswordError] = useState('')
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider()
@@ -64,13 +65,10 @@ const Signup = () => {
         updateUserProfile(profile)
             .then(result => {
                 const user = result.user
-                console.log(user);
+                // console.log(user);
             })
             .catch(error => {
                 console.error(error);
-            })
-            .finally(() => {
-                setLoading(false)
             })
     }
 
@@ -103,9 +101,6 @@ const Signup = () => {
                     })
             })
             .catch(error => console.error(error))
-            .finally(() => {
-                setLoading(false)
-            })
     }
 
     // ----- Signup With Github -----
@@ -137,14 +132,14 @@ const Signup = () => {
                     })
             })
             .catch(error => console.error(error))
-            .finally(() => {
-                setLoading(false)
-            })
     }
 
 
     return (
         <div className="bg-blue-50 py-8 flex flex-col">
+            {
+                loading === true && <Loading></Loading>
+            }
             <div className="container py-4 rounded shadow-lg p-6  bg-cyan-200 max-w-sm mx-auto flex-1 flex flex-col items-center justify-center">
                 <h1 className="mb-8 text-3xl text-black font-bold text-center">Signup</h1>
                 <form onSubmit={handleSubmit} className=" text-black w-full">

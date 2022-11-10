@@ -49,9 +49,9 @@ const AllReview = ({ review, handleDelete, handleEdit }) => {
                 <div className="flex flex-col shadow-sm bg-white">
                     <div className="flex flex-col p-3 items-center w-full">
                         <div className="flex flex-col w-full">
-                            <textarea onChange={handleOnchange} name='message' rows="3" placeholder="Message..." className="p-4 rounded-md resize-none dark:text-gray-100 dark:bg-gray-900"></textarea>
+                            <textarea onChange={handleOnchange} name='message' rows="3" placeholder="Message..." className="p-4 rounded-md resize-none text-gray-100 bg-gray-900"></textarea>
                             <Link className='w-full' onClick={() => setShowInput(false)}>
-                                <button onClick={() => handleEdit(_id, editMessage)} className="py-2 px-4 mt-3 font-semibold rounded-md dark:text-gray-900 dark:bg-violet-400">UPDATE</button>
+                                <button onClick={() => handleEdit(_id, editMessage)} className="py-2 px-4 mt-3 font-semibold rounded-md text-gray-900 bg-violet-400">UPDATE</button>
                             </Link>
                         </div>
                     </div>

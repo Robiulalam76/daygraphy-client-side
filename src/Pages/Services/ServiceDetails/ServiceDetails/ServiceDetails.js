@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import ReviewStatitics from '../ReviewStatitics/ReviewStatitics';
 import AllReview from '../AllReview/AllReview';
@@ -10,9 +10,9 @@ import ServiceDetailsInfo from '../ServiceDetailsInfo/ServiceDetailsInfo';
 import './Style.css'
 
 const ServiceDetails = () => {
-    const { user, logout } = useContext(AuthContext)
+    const { user } = useContext(AuthContext)
     const service = useLoaderData();
-    const { _id, price, title, ratings, description, img, photographer } = service;
+    const { _id, img, } = service;
     const [reviews, setReviews] = useState([])
 
     const getTime = (date) => {
