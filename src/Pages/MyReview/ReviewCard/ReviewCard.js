@@ -5,7 +5,7 @@ import trash from '../../../assets/icons/trash.png'
 import { Link } from 'react-router-dom';
 
 const ReviewCard = ({ review, handleDelete, handleEdit }) => {
-    const { _id, serviceId, name, img, email, message } = review;
+    const { _id, serviceId, name, img, email, message, time } = review;
     const [showInput, setShowInput] = useState(false)
     const [editMessage, setEditMessage] = useState('')
     const [service, setService] = useState({})
@@ -30,7 +30,7 @@ const ReviewCard = ({ review, handleDelete, handleEdit }) => {
                 <h1 className='text-gray-900 font-bold'>{service.title}</h1>
                 <div className='flex items-center justify-between'>
                     <h1 className='text-rose-600 font-bold'>${service.price}</h1>
-                    <h1 className='text-rose-600 font-bold'>${service.ratings}</h1>
+                    <h1 className='text-rose-600 font-bold'>{service.ratings}</h1>
                     <h1 className='text-rose-600 font-bold'>73 reviews</h1>
                 </div>
             </div>
@@ -46,7 +46,7 @@ const ReviewCard = ({ review, handleDelete, handleEdit }) => {
                                 </div>
                             </div>
                         </div>
-                        <small className='text-right'>1s ago</small>
+                        <small className='text-right'>{time}</small>
                     </div>
                     <div className="px-2">
                         <p className="text-xl leading-5 py-4 text-black">
