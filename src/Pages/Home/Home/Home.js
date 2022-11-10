@@ -18,7 +18,7 @@ const Home = () => {
             </div>
             <div>
                 <h1 className='text-gray-900 mt-6 font-bold text-3xl text-center'>Latest Services</h1>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-8 mb-12 px-6'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-4 mt-8 mb-12 px-6 w-full'>
                     {
                         services.map(service => <LatestService
                             key={service._id}

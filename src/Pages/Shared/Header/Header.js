@@ -6,7 +6,7 @@ import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 const Header = () => {
     const { user, logout } = useContext(AuthContext)
     const [open, setOpen] = useState(false)
-    console.log(user);
+    // console.log(user);
 
     const handleLogout = () => {
         logout()
@@ -40,8 +40,9 @@ const Header = () => {
                 <NavLink to='/profile'
                     onClick={() => setOpen(false)} className={({ isActive }) => isActive ?
                         'text-orange-600 mt-3 md:mt-0 md:hidden' : 'mt-3 md:mt-0 md:hidden'}>
-                    <button className='btn btn-xs btn-primary  py-0'>PROFILE</button>
+                    <button className='btn btn-xs btn-primary py-0'>PROFILE</button>
                 </NavLink>
+
                 <NavLink to='/home'
                     onClick={() => setOpen(false)} className={({ isActive }) => isActive ?
                         'text-orange-600 mt-3 md:mt-0 mr-6' : 'mr-6 mt-3 md:mt-0'}>HOME</NavLink>
@@ -72,7 +73,9 @@ const Header = () => {
                         </Link>
                     </>
                         :
-                        <NavLink onClick={() => setOpen(false)} className={({ isActive }) => isActive ? 'active mt-3 md:mt-0' : 'mt-3 md:mt-0'} to='/login'>LOGIN</NavLink>
+                        <NavLink onClick={() => setOpen(false)} className={({ isActive }) => isActive ? 'active mt-3 md:mt-0' : 'mt-3 md:mt-0'} to='/login'>
+                            <button className='btn btn-xs btn-secondary py-0'>LOGIN</button>
+                        </NavLink>
                 }
             </div>
         </nav>

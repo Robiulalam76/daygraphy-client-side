@@ -5,7 +5,7 @@ import edit from '../../../../assets/icons/edit.png'
 import trash from '../../../../assets/icons/trash.png'
 
 const AllReview = ({ review, handleDelete, handleEdit }) => {
-    const { _id, serviceId, name, img, email, message } = review;
+    const { _id, serviceId, time, name, img, email, message } = review;
     const [showInput, setShowInput] = useState(false)
     const [editMessage, setEditMessage] = useState('')
 
@@ -16,19 +16,19 @@ const AllReview = ({ review, handleDelete, handleEdit }) => {
     }
 
     return (
-        <div className="w-full border-t-4 border-l-4 border-blue-900">
+        <div className="w-full border-t py-1 border-l border-blue-900">
             <div className="bg-gray-100 p-6 shadow border-x-2 border-gray-400">
                 <div className='flex justify-between items-center  pb-2 border-b border-gray-600'>
                     <div className="flex items-center">
-                        <img src={img} className="w-12 border-blue-600 border-2 h-12 rounded-full" alt='' />
+                        <img src={img} className="w-12 border-blue-900 border h-12 rounded-full" alt='' />
                         <div className="flex items-center justify-between mb-3">
                             <div className="pl-3 w-full ">
-                                <p className="text-xl font-medium leading-5 text-gray-800">{name ? name : <small>No Name</small>}</p>
+                                <p className="text-xl font-medium leading-5 text-blue-900">{name ? name : <small>No Name</small>}</p>
                                 <p className="text-sm leading-normal text-gray-500">{email ? email : <small>Email Not Found</small>}</p>
                             </div>
                         </div>
                     </div>
-                    <small className='text-right'>1s ago</small>
+                    <small className='text-right text-gray-900'>{time}</small>
                 </div>
                 <div className="px-2">
                     <p className="text-xl leading-5 py-4 text-black">
@@ -45,7 +45,7 @@ const AllReview = ({ review, handleDelete, handleEdit }) => {
             </div>
 
 
-            <div className={`md:col-span-3 ${showInput ? 'block' : 'hidden'}`}>
+            <div className={`md:col-span-3 ${showInput ? 'block z-50' : 'hidden'}`}>
                 <div className="flex flex-col shadow-sm bg-white">
                     <div className="flex flex-col p-3 items-center w-full">
                         <div className="flex flex-col w-full">

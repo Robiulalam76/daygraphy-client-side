@@ -21,6 +21,11 @@ const MyReview = () => {
         })
             .then(res => {
                 if (res.status === 401 || res.status === 403) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: '401 Unauthorized Access!',
+                    })
                     return logout()
                 }
                 return res.json()
@@ -59,7 +64,16 @@ const MyReview = () => {
                     }
                 })
 
-                    .then(res => res.json())
+                    .then(res => {
+                        if (res.status === 401 || res.status === 403) {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: '401 Unauthorized Access! Please Login',
+                            })
+                        }
+                        return res.json()
+                    })
                     .then(data => {
                         if (data.deletedCount > 0) {
                             const remaining = reviews.filter(review => review._id !== id)
@@ -71,8 +85,6 @@ const MyReview = () => {
     }
 
     const handleEdit = (id, message) => {
-        // console.log(id, message);
-
         const UpdateMessage = { message }
 
         fetch(`http://localhost:5000/reviews/${id}`, {
@@ -85,6 +97,13 @@ const MyReview = () => {
         })
 
             .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: '401 Unauthorized Access! Please Login',
+                    })
+                }
                 return res.json()
             })
             .then(data => {

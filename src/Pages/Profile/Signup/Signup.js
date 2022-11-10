@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
@@ -7,6 +7,7 @@ import useTitle from '../../../Hooks/useTitle';
 
 const Signup = () => {
     const { user, setLoading, signupEmailAndPassword, updateUserProfile, signupWithGoogle, signupWithGithub } = useContext(AuthContext);
+    const [passwordError, setPasswordError] = useState('')
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider()
     const navigate = useNavigate()
@@ -21,22 +22,43 @@ const Signup = () => {
         const email = event.target.email.value;
         const password = event.target.password.value;
 
+        if (password.length < 6) {
+            setPasswordError('at least 6 characters.');
+            event.target.password.value = ''
+            return;
+        }
+
         signupEmailAndPassword(email, password)
             .then(result => {
                 const user = result.user;
-                navigate('/login')
                 updateProfile(name, photoURL)
-                console.log(user);
-                Swal.fire(
-                    'Welcome!',
-                    'Your Account Create Successfully',
-                    'success'
-                )
+                const currentUser = {
+                    email: user?.email
+                }
+                // console.log(currentUser);
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        // console.log(data.token)
+                        localStorage.setItem('user-token', data.token)
+                        navigate(from, { replace: true });
+                        Swal.fire(
+                            'Welcome To You!',
+                            'Your Account Create Seccessfully.',
+                            'success'
+                        )
+                    })
             })
             .catch(error => console.error(error))
-
     }
 
+    // ----- Update Name and Photo-----
     const updateProfile = (name, photoURL) => {
         const profile = { displayName: name, photoURL: photoURL }
         updateUserProfile(profile)
@@ -52,42 +74,76 @@ const Signup = () => {
             })
     }
 
+    // -----Signup With Google-----
     const handleSignupWithGoogle = () => {
         signupWithGoogle(googleProvider)
             .then(result => {
                 const user = result.user
-                navigate(from, { replace: true });
-                Swal.fire(
-                    'Welcome!',
-                    'Your Account Create Successfully',
-                    'success'
-                )
-                // console.log(user);
+                const currentUser = {
+                    email: user?.email
+                }
+                // console.log(currentUser);
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        // console.log(data.token)
+                        localStorage.setItem('user-token', data.token)
+                        navigate(from, { replace: true });
+                        Swal.fire(
+                            'Welcome To You!',
+                            'Your Account Create Seccessfully.',
+                            'success'
+                        )
+                    })
             })
             .catch(error => console.error(error))
             .finally(() => {
                 setLoading(false)
             })
     }
+
+    // ----- Signup With Github -----
     const handleSignupWithGithub = () => {
         signupWithGithub(githubProvider)
             .then(result => {
                 const user = result.user
-                navigate(from, { replace: true });
-                Swal.fire(
-                    'Welcome!',
-                    'Your Account Create Successfully',
-                    'success'
-                )
-                // console.log(user);
+                const currentUser = {
+                    email: user?.email
+                }
+                // console.log(currentUser);
+                fetch('http://localhost:5000/jwt', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(currentUser)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        // console.log(data.token)
+                        localStorage.setItem('user-token', data.token)
+                        navigate(from, { replace: true });
+                        Swal.fire(
+                            'Welcome To You!',
+                            'Your Account Create Seccessfully.',
+                            'success'
+                        )
+                    })
             })
             .catch(error => console.error(error))
             .finally(() => {
                 setLoading(false)
             })
     }
-    return (
 
+
+    return (
         <div className="bg-blue-50 py-8 flex flex-col">
             <div className="container py-4 rounded shadow-lg p-6  bg-cyan-200 max-w-sm mx-auto flex-1 flex flex-col items-center justify-center">
                 <h1 className="mb-8 text-3xl text-black font-bold text-center">Signup</h1>
@@ -113,6 +169,11 @@ const Signup = () => {
                         className="block bg-white border border-grey-light w-full p-3 rounded mb-4"
                         name="password"
                         placeholder="Password" required />
+                    <div>
+                        {
+                            passwordError && <p className='text-left font-semibold text-red-600'>{passwordError}</p>
+                        }
+                    </div>
 
                     <button
                         type="submit"

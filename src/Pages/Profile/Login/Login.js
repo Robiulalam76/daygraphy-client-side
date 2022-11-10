@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../Context/AuthProvider/AuthProvider';
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
@@ -8,6 +8,7 @@ import useTitle from '../../../Hooks/useTitle';
 const Login = () => {
     useTitle('Login')
     const { user, logout, setLoading, loginWithEmailPassword, signupWithGoogle, signupWithGithub } = useContext(AuthContext)
+    const [errorPassword, setPasswordError] = useState("")
     const googleProvider = new GoogleAuthProvider();
     const githubProvider = new GithubAuthProvider();
     const navigate = useNavigate()
@@ -15,6 +16,7 @@ const Login = () => {
     const from = location.state?.from?.pathname || "/";
 
     const handleSubmit = (event) => {
+        setLoading(true)
         event.preventDefault();
         const email = event.target.email.value;
         const password = event.target.password.value;
@@ -22,6 +24,7 @@ const Login = () => {
         loginWithEmailPassword(email, password)
             .then((result) => {
                 const user = result.user;
+                event.target.reset()
                 const currentUser = {
                     email: user?.email
                 }
@@ -46,12 +49,22 @@ const Login = () => {
                     })
             })
             .catch((error) => {
-                console.error(error);
+                // const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorMessage);
+                if (errorMessage === "Firebase: Error (auth/wrong-password).") {
+                    setPasswordError("Password is Wrong Try again")
+                    event.target.reset()
+                }
+                if (errorMessage === "Firebase: Error (auth/user-not-found).") {
+                    setPasswordError('User is Not Found')
+                }
             })
     }
 
     // --------Login with Google--------
     const handleSignupWithGoogle = () => {
+        setLoading(true)
         signupWithGoogle(googleProvider)
             .then(result => {
                 const user = result.user
@@ -68,7 +81,7 @@ const Login = () => {
                 })
                     .then(res => res.json())
                     .then(data => {
-                        console.log(data.token)
+                        // console.log(data.token)
                         localStorage.setItem('user-token', data.token)
                         navigate(from, { replace: true });
                         Swal.fire(
@@ -87,6 +100,7 @@ const Login = () => {
 
     // --------Login with Github--------
     const handleSignupWithGithub = () => {
+        setLoading(true)
         signupWithGithub(githubProvider)
             .then(result => {
                 const user = result.user
@@ -135,6 +149,12 @@ const Login = () => {
                         className="block bg-white border border-grey-light w-full p-3 rounded mb-4"
                         name="password"
                         placeholder="Password" required />
+
+                    <div>
+                        {
+                            errorPassword && <p className='text-left font-semibold text-red-600'>{errorPassword}</p>
+                        }
+                    </div>
 
                     <button
                         type="submit"
