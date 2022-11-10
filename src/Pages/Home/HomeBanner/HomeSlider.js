@@ -40,7 +40,7 @@ const HomeSlider = () => {
             </div>
             <div id="slide4" className="carousel-item relative w-full">
                 <div className='carousel-img h-full w-full'>
-                    <img src="https://i1.adis.ws/i/canon/canon-get-inspired-urban-nature-photography-tips-1-1920x1080-tint?$og-image$" className="w-full h-full rounded-lg" />
+                    <img src="https://i1.adis.ws/i/canon/canon-get-inspired-urban-nature-photography-tips-1-1920x1080-tint?$og-image$" className="w-full h-full rounded-lg" alt='' />
                 </div>
                 <div className="absolute flex justify-center md:justify-between bottom-12 md:bottom-auto transform md:-translate-y-1/2 left-5 right-5 md:top-1/2">
                     <a href="#slide3" className="btn btn-circle bg-transparent border-0 text-xl mr-12">❮</a>
@@ -50,7 +50,7 @@ const HomeSlider = () => {
             </div>
             <div id="slide5" className="carousel-item relative w-full">
                 <div className='carousel-img h-full w-full'>
-                    <img src={img1} alt='' />
+                    <img className='w-full h-full rounded-lg' src={img1} alt='' />
                 </div>
                 <div className="absolute flex justify-center md:justify-between bottom-12 md:bottom-auto transform md:-translate-y-1/2 left-5 right-5 md:top-1/2">
                     <a href="#slide4" className="btn btn-circle bg-transparent border-0 text-xl mr-12">❮</a>

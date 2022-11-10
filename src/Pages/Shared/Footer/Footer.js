@@ -21,7 +21,7 @@ const Footer = () => {
                         <Link
                             href="/"
                             aria-label="Go home"
-                            title="Company"
+                            title="DayGraphy"
                             className="inline-flex items-center"
                         >
                             <img className='w-16' src={logo} alt="" />
@@ -51,7 +51,7 @@ const Footer = () => {
                                         href="/"
                                         className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                                     >
-                                        News
+                                        Nature Photography
                                     </a>
                                 </li>
                                 <li>
@@ -59,7 +59,7 @@ const Footer = () => {
                                         href="/"
                                         className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                                     >
-                                        World
+                                        People
                                     </a>
                                 </li>
                                 <li>
@@ -67,7 +67,7 @@ const Footer = () => {
                                         href="/"
                                         className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                                     >
-                                        Games
+                                        sports
                                     </a>
                                 </li>
                                 <li>
@@ -75,14 +75,14 @@ const Footer = () => {
                                         href="/"
                                         className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                                     >
-                                        References
+                                        Products
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div>
                             <p className="font-semibold tracking-wide text-teal-accent-400">
-                                Cherry
+                                Stil Life
                             </p>
                             <ul className="mt-2 space-y-2">
                                 <li>
@@ -90,7 +90,7 @@ const Footer = () => {
                                         href="/"
                                         className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                                     >
-                                        Web
+                                        Architecture
                                     </a>
                                 </li>
                                 <li>
@@ -98,7 +98,7 @@ const Footer = () => {
                                         href="/"
                                         className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                                     >
-                                        eCommerce
+                                        Travel
                                     </a>
                                 </li>
                                 <li>
@@ -122,14 +122,14 @@ const Footer = () => {
                                         href="/"
                                         className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                                     >
-                                        Portfolio
+                                        Fashion
                                     </a>
                                 </li>
                             </ul>
                         </div>
                         <div>
                             <p className="font-semibold tracking-wide text-teal-accent-400">
-                                Apples
+                                Macro
                             </p>
                             <ul className="mt-2 space-y-2">
                                 <li>
@@ -145,7 +145,7 @@ const Footer = () => {
                                         href="/"
                                         className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                                     >
-                                        Brochure
+                                        Wildlife
                                     </a>
                                 </li>
                                 <li>
@@ -153,7 +153,7 @@ const Footer = () => {
                                         href="/"
                                         className="transition-colors duration-300 text-deep-purple-50 hover:text-teal-accent-400"
                                     >
-                                        Nonprofit
+                                        Portraits
                                     </a>
                                 </li>
                                 <li>

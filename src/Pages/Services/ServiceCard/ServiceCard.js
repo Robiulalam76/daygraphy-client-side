@@ -7,9 +7,8 @@ const ServiceCard = ({ service }) => {
     return (
 
         <div class="flex justify-center mx-auto w-full">
-            <div class="rounded-lg shadow-lg bg-white min-h-[460px] w-full">
+            <div class="relative rounded-lg shadow-lg bg-white w-full">
                 <a href="#!">
-
                     {/* click to img show */}
                     <PhotoProvider>
                         <div className="foo">
@@ -31,10 +30,10 @@ const ServiceCard = ({ service }) => {
                             <Link to='/about' className='text-gray-800 block'><small>{photographer}</small></Link>
                         </div>
                     </div>
-                    <p class="text-gray-700 text-base mb-4">
+                    <p class="text-gray-700 text-base mb-8">
                         {description?.slice(0, 100) + '...'}
                     </p>
-                    <div className='flex justify-between items-center'>
+                    <div className='flex justify-between py-3'>
                         <Link to={`/services/${_id}`}>
                             <button type="button" class=" inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">MORE DETAILS</button>
                         </Link>

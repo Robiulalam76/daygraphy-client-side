@@ -16,7 +16,7 @@ const Header = () => {
             <div className='flex justify-between items-center mx-4'>
                 <div>
                     <Link to='/' className='block ml-0'>
-                        <img className='w-[80px] md:hidden' src={logo} alt="brand logo" />
+                        <img className='w-20 md:hidden' src={logo} alt="brand logo" />
                     </Link>
                 </div>
                 <div onClick={() => setOpen(!open)} className="w-10 md:hidden ml-4 text-white">
@@ -32,7 +32,8 @@ const Header = () => {
                 </div>
             </div>
             <div className={`bg-gray-900 flex text-white z-50 flex-col items-start justify-start mt-none md:flex-row md:items-center h-full md:h-fit md:w-full md:flex md:justify-end absolute md:static duration-500 ease-in  
-            ${open ? 'left-[0px] pl-5 pr-16 pt-3' : '-left-[300px] md:left-0'}`}>
+            ${open ? 'left-[0px] pl-8 pr-20 pt-5' : '-left-[300px] md:left-0'}`}>
+
                 <Link to='/' className='text-blue-600 font-bold text-2xl md:grow' >
                     <img className='w-20 hidden md:block' src={logo} alt="brand logo" />
                 </Link>
