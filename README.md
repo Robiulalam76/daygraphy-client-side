@@ -1,6 +1,15 @@
 # [<img src="logo.jpg" width="40" height="20"/>](logo.jpg) DayGraphy
 Daygraphy is a photography service website.  This is a personal website.  Here you can hire photographers for different categories of photography.
 
+## Important Links of the Website:
+1. Client Side: https://github.com/Porgramming-Hero-web-course/b6a11-service-review-client-side-Robiulalam76
+
+2. Server Side: https://github.com/Porgramming-Hero-web-course/b6a11-service-review-server-side-Robiulalam76
+
+3. Live Site: https://daygraphy-56bb6.web.app/
+
+4. Live Server API: https://daygraphy-server.vercel.app
+
 ## Website Details
 Daygraphy is a photography service website.  This is a personal website.  Here you can hire photographers for different categories of photography.
 
@@ -16,21 +25,6 @@ Daygraphy is a photography service website.  This is a personal website.  Here y
 
 - `which are used on the website` 
 - Tailwind CSS, Dasyui component, click to image show npm pachage, fierebase Authentication system, express, mongodb etc.
-
-
-## Live Site: 
-- 
-
-## Repository Link:
-1. Client Site: 
-
-2. Server Site: 
-
-## Git Clone:
-- 
-
-
-
 
 
 

@@ -11,7 +11,7 @@ const ReviewCard = ({ review, handleDelete, handleEdit }) => {
     const [service, setService] = useState({})
 
     useEffect(() => {
-        fetch(`http://localhost:5000/services/${serviceId}`)
+        fetch(`https://daygraphy-server.vercel.app/services/${serviceId}`)
             .then(res => res.json())
             .then(data => {
                 setService(data)

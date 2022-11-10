@@ -14,7 +14,7 @@ const MyReview = () => {
     }, [])
 
     useEffect(() => {
-        fetch(`http://localhost:5000/my-reviews?email=${user?.email}`, {
+        fetch(`https://daygraphy-server.vercel.app/my-reviews?email=${user?.email}`, {
             headers: {
                 authorization: `Bearer ${localStorage.getItem('user-token')}`
             }
@@ -57,7 +57,7 @@ const MyReview = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/reviews/${id}`, {
+                fetch(`https://daygraphy-server.vercel.app/reviews/${id}`, {
                     method: 'DELETE',
                     headers: {
                         authorization: `Bearer ${localStorage.getItem('user-token')}`
@@ -87,7 +87,7 @@ const MyReview = () => {
     const handleEdit = (id, message) => {
         const UpdateMessage = { message }
 
-        fetch(`http://localhost:5000/reviews/${id}`, {
+        fetch(`https://daygraphy-server.vercel.app/reviews/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',

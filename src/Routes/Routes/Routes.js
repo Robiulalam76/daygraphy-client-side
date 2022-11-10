@@ -23,27 +23,27 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                loader: () => fetch('http://localhost:5000/latest-services/'),
+                loader: () => fetch('https://daygraphy-server.vercel.app/latest-services/'),
                 element: <Home></Home>
             },
             {
                 path: '/home',
-                loader: () => fetch('http://localhost:5000/latest-services/'),
+                loader: () => fetch('https://daygraphy-server.vercel.app/latest-services/'),
                 element: <Home></Home>
             },
             {
                 path: '/services',
-                loader: () => fetch('http://localhost:5000/services/'),
+                loader: () => fetch('https://daygraphy-server.vercel.app/services/'),
                 element: <Services></Services>
             },
             {
                 path: '/services/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`),
+                loader: ({ params }) => fetch(`https://daygraphy-server.vercel.app/services/${params.id}`),
                 element: <ServiceDetails></ServiceDetails>
             },
             {
                 path: '/services/order-request/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`),
+                loader: ({ params }) => fetch(`https://daygraphy-server.vercel.app/services/${params.id}`),
                 element: <PriveteRoute><OrderReq></OrderReq></PriveteRoute>
             },
             {

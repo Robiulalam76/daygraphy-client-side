@@ -40,7 +40,7 @@ const ServiceDetails = () => {
             time: getTime(new Date)
         }
 
-        fetch('http://localhost:5000/reviews', {
+        fetch('https://daygraphy-server.vercel.app/reviews', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -60,7 +60,7 @@ const ServiceDetails = () => {
     }
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?_id=${_id}`)
+        fetch(`https://daygraphy-server.vercel.app/reviews?_id=${_id}`)
             .then(res => {
                 return res.json()
             })
@@ -94,7 +94,7 @@ const ServiceDetails = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/reviews/${id}`, {
+                fetch(`https://daygraphy-server.vercel.app/reviews/${id}`, {
                     method: 'DELETE',
                     headers: {
                         authorization: `Bearer ${localStorage.getItem('user-token')}`
@@ -125,7 +125,7 @@ const ServiceDetails = () => {
     const handleEdit = (id, message) => {
         const UpdateMessage = { message }
 
-        fetch(`http://localhost:5000/reviews/${id}`, {
+        fetch(`https://daygraphy-server.vercel.app/reviews/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json',
