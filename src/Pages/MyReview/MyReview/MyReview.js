@@ -96,6 +96,11 @@ const MyReview = () => {
                             const remaining = reviews.filter(review => review._id !== id)
                             setReviews(remaining)
                             loadReviews()
+                            Swal.fire(
+                                'Good job!',
+                                'Review Delete Successfull',
+                                'success'
+                            )
                         }
                     })
             }
@@ -135,6 +140,11 @@ const MyReview = () => {
                     const newMessage = [update, ...remaining]
                     setReviews(newMessage)
                     loadReviews()
+                    Swal.fire(
+                        'Good job!',
+                        'Review Update Successfull',
+                        'success'
+                    )
                 }
             })
     }

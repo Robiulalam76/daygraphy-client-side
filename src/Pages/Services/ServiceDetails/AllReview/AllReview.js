@@ -34,8 +34,6 @@ const AllReview = ({ review, handleDelete, handleEdit, }) => {
                     <p className="text-xl leading-5 py-4 text-black">
                         {message}
                     </p>
-
-
                 </div>
                 <div className="flex justify-end p-3 items-center border-t border-gray-600 bg-gray-300 mt-3">
                     <Link className='flex-grow text-gray-600 hover:text-blue-600'><img className='w-6 inline' src={reply} alt="" /> Reply</Link>

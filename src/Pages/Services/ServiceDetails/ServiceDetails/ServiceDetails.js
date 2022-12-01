@@ -199,8 +199,9 @@ const ServiceDetails = () => {
 
                 {/*---------all review list --------*/}
                 <div className='md:col-span-2 w-full lg:overflow-auto lg:max-h-[470px]'>
+                    <h1 className='text-center py-2 text-blue-900'>Reviews</h1>
                     {
-                        reviews.length === 0 ? <h1 className='text-3xl font-bold text-gray-900 text-center mt-12'>No Reviews</h1>
+                        reviews.length === 0 ? <h1 className='text-3xl font-bold text-gray-900 text-center my-12'>No Reviews</h1>
                             :
                             <>
                                 {
